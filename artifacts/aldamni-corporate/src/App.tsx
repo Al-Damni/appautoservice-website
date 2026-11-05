@@ -1,45 +1,32 @@
-import { useEffect, useState } from 'react';
-import { ArrowDown, ArrowDownToLine, ArrowUpRight, ChevronDown, Pause, Play } from 'lucide-react';
-import oliveOilAndCheeseImage from '@assets/Gemini_Generated_Image_oylb7ioylb7ioylb_(2)_1793863143115.jpg';
-import autoOilImage from '@assets/Gemini_Generated_Image_oylb7ioylb7ioylb_(1)_1793863143115.jpg';
-import hydroponicGreenhouseImage from '@assets/Gemini_Generated_Image_oylb7ioylb7ioylb_1793863143117.jpg';
+import { useEffect, useRef, useState } from 'react';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ArrowDownToLine, ArrowUpRight, ChevronDown, Pause, Play } from 'lucide-react';
+import { heroSlides } from '@/data/heroSlides';
 
 type Language = 'en' | 'ar';
 const asset = (name: string) => `${import.meta.env.BASE_URL}${name}`;
-const BRAND_ASSETS = {
-  logo: `${import.meta.env.BASE_URL}images/Gemini_Generated_Image_jfi82pjfi82pjfi8_1793866780300.jpg`,
-  lubricants: autoOilImage,
-  food: oliveOilAndCheeseImage,
-  hydroponics: hydroponicGreenhouseImage,
-};
+const HERO_SECONDS_PER_SLIDE = 5.6;
+const HERO_FADE_SECONDS = 0.9;
 
 const copy = {
   en: {
     nav: ['About Us', 'Contact Us'],
     language: 'AR',
     menu: 'Open navigation',
-    brandCardLabel: 'Official company mark',
-    pauseShowcase: 'Pause product showcase',
-    resumeShowcase: 'Resume product showcase',
-    heroTitle: <>Essential sectors.<br /><em>Trusted supply.</em></>,
-    heroText: 'From petroleum derivatives for the Syrian Ministry of Petroleum to automotive spare parts, our own lubricants, food imports for Kuwait’s cooperative societies and hydroponics in Syria.',
-    explore: 'Explore our sectors',
-    downloadProfile: 'Download corporate profile (PDF)',
-    contactWhatsApp: 'Contact us via WhatsApp',
+    heroTitle: 'Auto Service App for General Trading LLC',
+    pauseShowcase: 'Pause slideshow',
+    resumeShowcase: 'Play slideshow',
+    chooseSlide: 'Choose a company image',
+    showSlide: 'Show image',
+    slideDescription: 'Company image slideshow',
+    currentSlide: (current: number, total: number) => `Image ${current} of ${total}`,
+    downloadProfile: 'Download company profile (PDF)',
     inquire: 'Choose a contact option',
     inquiryKuwait: 'Kuwait WhatsApp · +965 55554199',
     inquirySyria: 'Syria WhatsApp · +963 959811087',
     inquiryEmail: 'Email · anas@appautoservice.com',
     established: 'ESTABLISHED',
-    sectorsTitle: 'Five sectors. One regional perspective.',
-    sectorsText: 'A Kuwait-established company connecting mobility, food, agriculture and essential energy supply.',
-    categories: [
-      { title: 'Engine oils & lubricants', sub: 'Automotive products', image: 'auto-service-lubricants.jpg', alt: 'Auto-Oil 5000, 10000 and 15000 engine oil bottles' },
-      { title: 'Olive oil & artisanal cheese', sub: 'Syrian food products', image: 'auto-service-food.jpg', alt: 'Shamco Wafrat El-Sham olive oil, olives and cheeses' },
-      { title: 'Auto spare parts', sub: 'Through the Auto Service App', image: 'auto-service-parts.jpg', alt: 'Auto Service App interface connecting drivers to spare-parts dealers' },
-      { title: 'Hydroponic agriculture', sub: 'Controlled growing', image: 'auto-service-greenhouse.jpg', alt: 'Hydroponic greenhouse growing lettuce, tomatoes and cucumbers' },
-      { title: 'Petroleum tankers', sub: 'Petroleum supply', image: 'auto-service-petroleum.jpg', alt: 'Petroleum tanker and storage infrastructure at dusk' },
-    ],
     sectorCards: [
       { id: 'energy', name: 'Petroleum & energy', description: 'Petroleum supply and logistics for the Syrian Ministry of Petroleum.' },
       { id: 'automotive', name: 'Auto spare parts', description: 'The Auto Service App for automotive spare parts.' },
@@ -67,34 +54,24 @@ const copy = {
     message: 'Message on WhatsApp',
     email: 'Email',
     footerNote: 'Auto Service App for General Trading LLC',
-    logoAlt: 'Auto Service App for General Trading LLC 3D logo',
   },
   ar: {
     nav: ['من نحن', 'تواصل معنا'],
     language: 'EN',
     menu: 'فتح قائمة التنقل',
-    brandCardLabel: 'العلامة الرسمية للشركة',
-    pauseShowcase: 'إيقاف عرض المنتجات مؤقتاً',
-    resumeShowcase: 'استئناف عرض المنتجات',
-    heroTitle: <>قطاعات حيوية.<br /><em>توريد موثوق.</em></>,
-    heroText: 'من المشتقات النفطية لوزارة النفط السورية إلى قطع الغيار وزيوت التشحيم بعلامتنا الخاصة وواردات الأغذية للجمعيات التعاونية في الكويت وأنظمة الزراعة المائية في سوريا.',
-    explore: 'اكتشف قطاعاتنا',
+    heroTitle: 'شركة أوتو سيرفس اب للتجارة العامة ذ.م.م',
+    pauseShowcase: 'إيقاف عرض الصور مؤقتاً',
+    resumeShowcase: 'تشغيل عرض الصور',
+    chooseSlide: 'اختر صورة للشركة',
+    showSlide: 'اعرض الصورة',
+    slideDescription: 'عرض صور الشركة',
+    currentSlide: (current: number, total: number) => `الصورة ${current} من ${total}`,
     downloadProfile: 'تنزيل الملف التعريفي للشركة (PDF)',
-    contactWhatsApp: 'تواصل معنا عبر واتساب',
     inquire: 'اختر وسيلة التواصل',
     inquiryKuwait: 'تواصل عبر واتساب الكويت (Kuwait WhatsApp)',
     inquirySyria: 'تواصل عبر واتساب سوريا (Syria WhatsApp)',
     inquiryEmail: 'إرسال بريد إلكتروني (Email)',
     established: 'تأسست عام',
-    sectorsTitle: 'خمسة قطاعات. ورؤية إقليمية واحدة.',
-    sectorsText: 'شركة تأسست في الكويت وتربط بين التنقل والغذاء والزراعة وإمدادات الطاقة الأساسية.',
-    categories: [
-      { title: 'زيوت المحركات ومواد التشحيم', sub: 'منتجات السيارات', image: 'auto-service-lubricants.jpg', alt: 'عبوات زيوت محركات أوتو أويل 5000 و10000 و15000' },
-      { title: 'زيت الزيتون والأجبان الحرفية', sub: 'منتجات غذائية سورية', image: 'auto-service-food.jpg', alt: 'منتجات شامكو وفرات الشام من زيت الزيتون والزيتون والأجبان' },
-      { title: 'قطع غيار السيارات', sub: 'من خلال تطبيق Auto Service', image: 'auto-service-parts.jpg', alt: 'واجهة تطبيق أوتو سيرفس التي تربط العملاء بتجار قطع الغيار' },
-      { title: 'الزراعة المائية', sub: 'زراعة محكومة', image: 'auto-service-greenhouse.jpg', alt: 'بيت محمي للزراعة المائية للخس والطماطم والخيار' },
-      { title: 'ناقلات النفط', sub: 'إمدادات نفطية', image: 'auto-service-petroleum.jpg', alt: 'ناقلة نفط وبنية تخزين عند الغروب' },
-    ],
     sectorCards: [
       { id: 'energy', name: 'النفط والطاقة', description: 'إمدادات نفطية وخدمات لوجستية لوزارة النفط السورية.' },
       { id: 'automotive', name: 'قطع غيار السيارات', description: 'تطبيق أوتو سيرفس لقطع غيار السيارات.' },
@@ -122,7 +99,6 @@ const copy = {
     message: 'تواصل عبر واتساب',
     email: 'البريد الإلكتروني',
     footerNote: 'شركة أوتو سيرفس اب للتجارة العامة ذ.م.م',
-    logoAlt: 'الشعار ثلاثي الأبعاد لشركة أوتو سيرفس اب للتجارة العامة',
   },
 } as const;
 
@@ -214,31 +190,15 @@ function OfficialLogoMark() {
 
 function App() {
   const [language, setLanguage] = useState<Language>('en');
-  const [trackPaused, setTrackPaused] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   const [reducedMotion, setReducedMotion] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  const [slideshowPaused, setSlideshowPaused] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  const [activeSlide, setActiveSlide] = useState(0);
+  const heroRef = useRef<HTMLElement>(null);
+  const slideRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const timelineRef = useRef<gsap.core.Timeline | null>(null);
+  const touchStartX = useRef<number | null>(null);
   const t = copy[language];
   const navIds = ['company', 'contact'];
-  const categoryImage = (index: number, image: string) => {
-    if (index === 0) return BRAND_ASSETS.lubricants;
-    if (index === 1) return BRAND_ASSETS.food;
-    if (index === 2) return asset('auto-service-parts.jpg');
-    if (index === 3) return BRAND_ASSETS.hydroponics;
-    return asset(image);
-  };
-  const brandCard = () => (
-    <article
-      className="showcase-card card-brand"
-      key="brand"
-    >
-      <div className="showcase-image brand-showcase-image">
-        <img src={BRAND_ASSETS.logo} alt={t.logoAlt} width={1024} height={976} loading="eager" decoding="async" />
-      </div>
-      <div className="showcase-card-copy">
-        <span>{t.brandCardLabel}</span>
-        <h3>{t.footerNote}</h3>
-      </div>
-    </article>
-  );
 
   useEffect(() => {
     document.documentElement.lang = language;
@@ -249,57 +209,96 @@ function App() {
     const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
     const updatePreference = () => {
       setReducedMotion(preference.matches);
-      if (preference.matches) setTrackPaused(true);
+      setSlideshowPaused(preference.matches);
     };
     preference.addEventListener('change', updatePreference);
     return () => preference.removeEventListener('change', updatePreference);
   }, []);
 
-  const go = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
-  };
+  useGSAP(() => {
+    const slides = slideRefs.current.filter((slide): slide is HTMLDivElement => slide !== null);
+    if (slides.length !== heroSlides.length) {
+      timelineRef.current = null;
+      return;
+    }
+
+    setActiveSlide(0);
+    gsap.set(slides, { opacity: 0 });
+    gsap.set(slides[0], { opacity: 1 });
+    gsap.set(slides.map((slide) => slide.querySelector('img')), { scale: 1 });
+
+    const timeline = gsap.timeline({ paused: true, repeat: -1 });
+    const secondsPerSlide = HERO_SECONDS_PER_SLIDE;
+    const fadeStart = (index: number) => (index + 1) * secondsPerSlide - HERO_FADE_SECONDS;
+
+    slides.forEach((slide, index) => {
+      const nextSlide = slides[(index + 1) % slides.length];
+      const image = slide.querySelector('img');
+
+      if (!reducedMotion && index === 0) {
+        timeline.fromTo(
+          image,
+          { scale: 1 },
+          { scale: 1.035, duration: secondsPerSlide, ease: 'none', immediateRender: false },
+          0,
+        );
+      }
+      timeline.fromTo(
+        slide,
+        { opacity: 1 },
+        { opacity: 0, duration: HERO_FADE_SECONDS, ease: 'power1.inOut', immediateRender: false },
+        fadeStart(index),
+      );
+      timeline.fromTo(
+        nextSlide,
+        { opacity: 0 },
+        { opacity: 1, duration: HERO_FADE_SECONDS, ease: 'power1.inOut', immediateRender: false },
+        fadeStart(index),
+      );
+      if (!reducedMotion && index > 0) {
+        timeline.fromTo(
+          image,
+          { scale: 1.035 },
+          { scale: 1, duration: secondsPerSlide, ease: 'none', immediateRender: false },
+          index * secondsPerSlide - HERO_FADE_SECONDS,
+        );
+      }
+    });
+
+    timeline.eventCallback('onUpdate', () => {
+      const current = Math.floor((timeline.time() + HERO_FADE_SECONDS) / secondsPerSlide) % slides.length;
+      setActiveSlide((previous) => (previous === current ? previous : current));
+    });
+    timeline.eventCallback('onRepeat', () => setActiveSlide(0));
+    timelineRef.current = timeline;
+    if (!slideshowPaused && !reducedMotion) timeline.play();
+
+    return () => {
+      timelineRef.current = null;
+    };
+  }, { scope: heroRef, dependencies: [reducedMotion], revertOnUpdate: true });
 
   const whatsapp = (phone: string, topic = language === 'en' ? 'general business enquiry' : 'استفسار أعمال عام') => getWhatsAppUrl(phone, language, topic);
-  const showcase = (
-    <div className="showcase-layout">
-      {brandCard()}
-      <div className="showcase-viewport">
-        <div className={`showcase-track${trackPaused ? ' is-paused' : ''}`}>
-          {t.categories.map((item, index) => (
-            <article className={`showcase-card card-${index + 1}`} key={item.title}>
-              <div className="showcase-image">
-                <img src={categoryImage(index, item.image)} alt={item.alt} width={1024} height={576} loading="eager" decoding="async" />
-              </div>
-              <div className="showcase-card-copy"><span>{item.sub}</span><h3>{item.title}</h3></div>
-            </article>
-          ))}
-          {t.categories.map((item, index) => (
-            <article className={`showcase-card card-${index + 1} showcase-duplicate`} key={`duplicate-${item.title}`} aria-hidden="true">
-              <div className="showcase-image">
-                <img src={categoryImage(index, item.image)} alt="" width={1024} height={576} loading="eager" decoding="async" />
-              </div>
-              <div className="showcase-card-copy"><span>{item.sub}</span><h3>{item.title}</h3></div>
-            </article>
-          ))}
-        </div>
-      </div>
-      <div className="showcase-controls wrap">
-        <span>{language === 'en' ? 'Product & operations showcase' : 'عرض المنتجات والعمليات'}</span>
-        <button
-          type="button"
-          className="showcase-toggle"
-          onClick={() => setTrackPaused(!trackPaused)}
-          aria-label={trackPaused ? t.resumeShowcase : t.pauseShowcase}
-          aria-pressed={trackPaused}
-          disabled={reducedMotion}
-          data-testid="button-showcase-toggle"
-        >
-          {trackPaused ? <Play size={15} aria-hidden="true" /> : <Pause size={15} aria-hidden="true" />}
-          {trackPaused ? (language === 'en' ? 'Resume motion' : 'استئناف الحركة') : (language === 'en' ? 'Pause motion' : 'إيقاف الحركة')}
-        </button>
-      </div>
-    </div>
-  );
+
+  const selectSlide = (index: number) => {
+    setActiveSlide(index);
+    const timeline = timelineRef.current;
+    if (!timeline) return;
+    timeline.pause();
+    timeline.time(index * HERO_SECONDS_PER_SLIDE + 0.5, false);
+    if (!slideshowPaused) timeline.play();
+  };
+
+  const moveSlide = (delta: number) => {
+    selectSlide((activeSlide + delta + heroSlides.length) % heroSlides.length);
+  };
+
+  const toggleSlideshow = () => {
+    const nextPaused = !slideshowPaused;
+    setSlideshowPaused(nextPaused);
+    if (nextPaused) timelineRef.current?.pause();
+    else timelineRef.current?.play();
+  };
 
   return (
     <main className={`site-shell${language === 'ar' ? ' rtl' : ''}`}>
@@ -319,37 +318,84 @@ function App() {
         </div>
       </header>
 
-      <section className="hero" id="top">
-        <div className="hero-image" style={{ backgroundImage: `url("${asset('auto-service-petroleum.jpg')}")` }} role="img" aria-label={language === 'en' ? 'Petroleum storage and regional tanker infrastructure' : 'خزانات نفط وبنية نقل إقليمية'} />
-        <div className="hero-shade" />
-        <div className="wrap hero-content">
-          <h1>{t.heroTitle}</h1>
-          <p>{t.heroText}</p>
-          <div className="hero-actions">
-            <a className="hero-cta" href={`${import.meta.env.BASE_URL}corporate-profile.pdf`} download data-testid="link-company-profile">
-              {t.downloadProfile}<ArrowDownToLine size={15} />
-            </a>
-            <InquiryMenu
-              language={language}
-              topic={language === 'en' ? 'general trading and product enquiries' : 'استفسارات التجارة العامة والمنتجات'}
-              label={t.contactWhatsApp}
-              testId="hero-inquiry"
-              className="inquiry-menu-hero"
-              summaryClassName="hero-cta hero-cta-secondary"
-            />
+      <section
+        ref={heroRef}
+        className="hero"
+        id="top"
+        aria-labelledby="home-showcase-title"
+        aria-roledescription={t.slideDescription}
+        onTouchStart={(event) => {
+          if ((event.target as HTMLElement).closest('.hero-controls')) return;
+          touchStartX.current = event.changedTouches[0]?.clientX ?? null;
+        }}
+        onTouchEnd={(event) => {
+          if ((event.target as HTMLElement).closest('.hero-controls')) {
+            touchStartX.current = null;
+            return;
+          }
+          const startX = touchStartX.current;
+          const endX = event.changedTouches[0]?.clientX;
+          touchStartX.current = null;
+          if (startX === null || endX === undefined || Math.abs(startX - endX) < 48) return;
+          moveSlide(startX > endX ? 1 : -1);
+        }}
+        onTouchCancel={() => { touchStartX.current = null; }}
+      >
+        <h1 id="home-showcase-title" className="sr-only">{t.heroTitle}</h1>
+        <div className="hero-slides" aria-hidden="false">
+          {heroSlides.map((slide, index) => {
+            const isActive = activeSlide === index;
+            return (
+              <div
+                className={`hero-slide${isActive ? ' is-active' : ''}`}
+                key={slide.src}
+                ref={(node) => { slideRefs.current[index] = node; }}
+                aria-hidden={!isActive}
+                data-testid={`hero-slide-${index + 1}`}
+              >
+                <img
+                  className="hero-slide-image"
+                  src={slide.src}
+                  alt={slide.alt[language]}
+                  width={1024}
+                  height={1024}
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  fetchPriority={index === 0 ? 'high' : 'auto'}
+                  decoding="async"
+                />
+              </div>
+            );
+          })}
+        </div>
+        <div className="hero-shade" aria-hidden="true" />
+        <div className="hero-controls">
+          <div className="hero-pagination" role="group" aria-label={t.chooseSlide}>
+            {heroSlides.map((slide, index) => (
+              <button
+                className={`hero-dot${activeSlide === index ? ' is-active' : ''}`}
+                type="button"
+                key={slide.src}
+                aria-label={`${t.showSlide}: ${slide.alt[language]}`}
+                aria-pressed={activeSlide === index}
+                onClick={() => selectSlide(index)}
+                data-testid={`button-hero-slide-${index + 1}`}
+              >
+                <span />
+              </button>
+            ))}
           </div>
-          <button type="button" className="hero-explore" onClick={() => go('sectors')}>{t.explore}<ArrowDown size={15} /></button>
-          <div className="hero-bottom"><span>{language === 'en' ? 'KUWAIT / SYRIA' : 'الكويت / سوريا'}</span><span className="hero-est"><b>2019</b> {t.established}</span></div>
+          <span className="sr-only" aria-live="polite">{t.currentSlide(activeSlide + 1, heroSlides.length)}: {heroSlides[activeSlide].alt[language]}</span>
+          <button
+            type="button"
+            className="hero-play-toggle"
+            onClick={toggleSlideshow}
+            aria-label={slideshowPaused ? t.resumeShowcase : t.pauseShowcase}
+            aria-pressed={slideshowPaused}
+            data-testid="button-hero-play-toggle"
+          >
+            {slideshowPaused ? <Play size={15} aria-hidden="true" /> : <Pause size={15} aria-hidden="true" />}
+          </button>
         </div>
-      </section>
-
-      <section className="showcase-section" id="sectors">
-        <div className="wrap showcase-heading">
-          <div><h2>{t.sectorsTitle}</h2></div>
-          <p>{t.sectorsText}</p>
-        </div>
-        {showcase}
-        <div className="wrap showcase-foot"><span>{language === 'en' ? 'SUPPLY · MOBILITY · PRODUCTION' : 'الإمداد · الحركة · الإنتاج'}</span><span>{language === 'en' ? 'A regional portfolio since 2019' : 'محفظة إقليمية منذ ٢٠١٩'}</span></div>
       </section>
 
       <section className="sector-directory" aria-labelledby="sector-directory-title">
@@ -372,7 +418,7 @@ function App() {
       <section className="company-section" id="company">
         <div className="wrap company-grid">
           <div className="company-image">
-            <img src={BRAND_ASSETS.hydroponics} alt={language === 'en' ? 'Hydroponic greenhouse producing lettuce, tomatoes and cucumbers' : 'بيت محمي للزراعة المائية ينتج الخس والطماطم والخيار'} width={1024} height={576} loading="lazy" decoding="async" />
+            <img src={heroSlides[4].src} alt={language === 'en' ? 'Hydroponic greenhouse producing lettuce, tomatoes and cucumbers' : 'بيت محمي للزراعة المائية ينتج الخس والطماطم والخيار'} width={1024} height={576} loading="lazy" decoding="async" />
           </div>
           <div className="company-copy">
             <h2>{t.companyTitle}</h2>
@@ -391,7 +437,13 @@ function App() {
         <div className="wrap">
           <div className="contact-intro">
             <div><h2>{t.contactTitle}</h2></div>
-            <div className="contact-aside"><p>{t.contactCopy}</p><a className="email-link" href={getEmailUrl(language, language === 'en' ? 'general business enquiry' : 'استفسار أعمال عام')} data-testid="link-contact-email">anas@appautoservice.com<ArrowUpRight size={15} /></a></div>
+            <div className="contact-aside">
+              <p>{t.contactCopy}</p>
+              <a className="email-link" href={getEmailUrl(language, language === 'en' ? 'general business enquiry' : 'استفسار أعمال عام')} data-testid="link-contact-email">anas@appautoservice.com<ArrowUpRight size={15} /></a>
+              <a className="profile-download" href={`${import.meta.env.BASE_URL}corporate-profile.pdf`} download data-testid="link-company-profile">
+                <span>{t.downloadProfile}</span><ArrowDownToLine size={15} aria-hidden="true" />
+              </a>
+            </div>
           </div>
           <div className="offices">
             <article className="office">
