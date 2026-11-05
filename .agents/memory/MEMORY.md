@@ -1,0 +1,1 @@
+- [Auto Service company profile](corporate-profile-facts.md) — keep the legal name, registration, history, regional hubs, and sector scope consistent across the site and profile.
