@@ -225,7 +225,10 @@ function App() {
     setActiveSlide(0);
     gsap.set(slides, { opacity: 0 });
     gsap.set(slides[0], { opacity: 1 });
-    gsap.set(slides.map((slide) => slide.querySelector('img')), { scale: 1 });
+    const backgrounds = slides
+      .map((slide) => slide.querySelector<HTMLImageElement>('.hero-slide-background'))
+      .filter((image): image is HTMLImageElement => image !== null);
+    gsap.set(backgrounds, { scale: 1.1 });
 
     const timeline = gsap.timeline({ paused: true, repeat: -1 });
     const secondsPerSlide = HERO_SECONDS_PER_SLIDE;
@@ -233,13 +236,13 @@ function App() {
 
     slides.forEach((slide, index) => {
       const nextSlide = slides[(index + 1) % slides.length];
-      const image = slide.querySelector('img');
+      const background = slide.querySelector<HTMLImageElement>('.hero-slide-background');
 
-      if (!reducedMotion && index === 0) {
+      if (background && !reducedMotion && index === 0) {
         timeline.fromTo(
-          image,
-          { scale: 1 },
-          { scale: 1.035, duration: secondsPerSlide, ease: 'none', immediateRender: false },
+          background,
+          { scale: 1.1 },
+          { scale: 1.16, duration: secondsPerSlide, ease: 'none', immediateRender: false },
           0,
         );
       }
@@ -255,11 +258,11 @@ function App() {
         { opacity: 1, duration: HERO_FADE_SECONDS, ease: 'power1.inOut', immediateRender: false },
         fadeStart(index),
       );
-      if (!reducedMotion && index > 0) {
+      if (background && !reducedMotion && index > 0) {
         timeline.fromTo(
-          image,
-          { scale: 1.035 },
-          { scale: 1, duration: secondsPerSlide, ease: 'none', immediateRender: false },
+          background,
+          { scale: 1.16 },
+          { scale: 1.1, duration: secondsPerSlide, ease: 'none', immediateRender: false },
           index * secondsPerSlide - HERO_FADE_SECONDS,
         );
       }
@@ -352,16 +355,33 @@ function App() {
                 ref={(node) => { slideRefs.current[index] = node; }}
                 aria-hidden={!isActive}
                 data-testid={`hero-slide-${index + 1}`}
+                data-fit={slide.fit ?? 'contain'}
               >
                 <img
-                  className="hero-slide-image"
+                  className="hero-slide-background"
+                  src={slide.src}
+                  alt=""
+                  aria-hidden="true"
+                  width={slide.width}
+                  height={slide.height}
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  fetchPriority="auto"
+                  decoding="async"
+                  style={{ objectPosition: slide.focus ?? '50% 50%' }}
+                />
+                <img
+                  className="hero-slide-foreground"
                   src={slide.src}
                   alt={slide.alt[language]}
-                  width={1024}
-                  height={1024}
+                  width={slide.width}
+                  height={slide.height}
                   loading={index === 0 ? 'eager' : 'lazy'}
                   fetchPriority={index === 0 ? 'high' : 'auto'}
                   decoding="async"
+                  style={{
+                    objectFit: slide.fit ?? 'contain',
+                    objectPosition: slide.focus ?? '50% 50%',
+                  }}
                 />
               </div>
             );

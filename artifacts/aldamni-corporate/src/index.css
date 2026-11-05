@@ -500,23 +500,30 @@ body { background: var(--warm-ivory); color: var(--ink-green); }
   .showcase-image>img { transition: none; }
 }
 
-/* Full-screen bilingual company-photo slideshow */
-:root { --hero-header-overlap: 82px; }
+/* Bilingual photo slideshow: keep the header in normal flow above the image. */
+:root {
+  --site-header-height: 83px;
+  --hero-controls-safe-space: 70px;
+}
 @media (max-width: 1180px) {
-  :root { --hero-header-overlap: 76px; }
+  :root { --site-header-height: 77px; }
 }
 @media (max-width: 700px) {
-  :root { --hero-header-overlap: 96px; }
+  :root { --site-header-height: 97px; }
+}
+.header {
+  height: var(--site-header-height);
 }
 .hero {
   position: relative;
   display: block;
   width: 100%;
-  height: 100svh;
-  min-height: 100svh;
-  max-height: 100svh;
-  margin-top: calc(var(--hero-header-overlap) * -1);
-  padding-top: var(--hero-header-overlap);
+  height: calc(100vh - var(--site-header-height));
+  height: calc(100svh - var(--site-header-height));
+  min-height: 0;
+  max-height: none;
+  margin: 0;
+  padding: 0;
   overflow: hidden;
   isolation: isolate;
   background: var(--deep-green);
@@ -525,45 +532,53 @@ body { background: var(--warm-ivory); color: var(--ink-green); }
 .hero-slides { position: absolute; inset: 0; overflow: hidden; background: var(--deep-green); }
 .hero-slide { position: absolute; inset: 0; opacity: 0; }
 .hero-slide.is-active { opacity: 1; }
-.hero-slide-image {
+.hero-slide-background {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  transform: scale(1.1);
   transform-origin: center;
+  filter: blur(30px) brightness(.78);
 }
-.hero-shade {
+.hero-slide::after {
   position: absolute;
   z-index: 1;
   inset: 0;
-  background: linear-gradient(180deg, rgba(17, 43, 36, .08) 0%, rgba(17, 43, 36, .03) 48%, rgba(17, 43, 36, .46) 100%);
+  background: rgba(17, 34, 29, .16);
+  content: '';
   pointer-events: none;
 }
-.rtl .hero-shade {
-  background: linear-gradient(180deg, rgba(17, 43, 36, .08) 0%, rgba(17, 43, 36, .03) 48%, rgba(17, 43, 36, .46) 100%);
+.hero-slide-foreground {
+  position: absolute;
+  z-index: 2;
+  inset: 0 0 var(--hero-controls-safe-space);
+  width: 100%;
+  height: calc(100% - var(--hero-controls-safe-space));
+  object-position: center;
 }
 .hero-controls {
   position: absolute;
-  z-index: 2;
-  inset-inline-end: clamp(14px, 3vw, 34px);
-  bottom: max(18px, env(safe-area-inset-bottom));
+  z-index: 3;
+  left: 50%;
+  bottom: max(10px, env(safe-area-inset-bottom));
   display: flex;
   align-items: center;
-  gap: 8px;
-  max-width: calc(100% - 28px);
-  padding: 4px 7px;
-  border: 1px solid rgba(247, 244, 235, .42);
-  background: rgba(25, 53, 46, .9);
+  gap: 4px;
+  max-width: calc(100% - 24px);
+  padding: 3px 5px;
+  border: 1px solid rgba(247, 244, 235, .28);
+  background: rgba(17, 34, 29, .76);
   color: #f7f4eb;
+  transform: translateX(-50%);
 }
 .hero-pagination { display: flex; align-items: center; gap: 0; }
 .hero-dot {
   display: grid;
-  width: 34px;
-  min-width: 34px;
-  height: 44px;
+  width: 30px;
+  min-width: 30px;
+  height: 40px;
   place-items: center;
   padding: 0;
   border: 0;
@@ -579,12 +594,11 @@ body { background: var(--warm-ivory); color: var(--ink-green); }
 }
 .hero-dot.is-active span { width: 19px; background: #f2c39d; }
 .hero-dot:focus-visible, .hero-play-toggle:focus-visible { outline-color: #f2c39d; outline-offset: 2px; }
-.hero-slide-count { min-width: 52px; color: #f7f4eb; font-size: 11px; text-align: center; white-space: nowrap; }
 .hero-play-toggle {
   display: grid;
-  width: 44px;
-  min-width: 44px;
-  height: 44px;
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
   place-items: center;
   padding: 0;
   border: 1px solid rgba(247, 244, 235, .55);
@@ -606,6 +620,5 @@ body { background: var(--warm-ivory); color: var(--ink-green); }
 .rtl .hero-controls, .rtl .hero-pagination { direction: rtl; }
 @media (prefers-reduced-motion: reduce) {
   .hero-slide { transition: none !important; }
-  .hero-slide-image { transform: none !important; }
   .hero-dot span { transition: none; }
 }
