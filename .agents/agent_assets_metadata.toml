@@ -98,3 +98,87 @@ mtime_ms = 1793903481211
 storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:e843aec5-4713-402e-8285-cc49cce1aba9/c5f87d42-315a-463c-a64b-132b9030b235/0e9706f4-e039-4c3e-bdab-c7d89d55719d"
 storage_version_token = "1793903583942540"
 content_type = "image/jpeg"
+
+[[outputs]]
+id = "HFYCYI0mNtMJRAmGZJjz7"
+uri = "file://artifacts/aldamni-corporate/screenshots/after/hero-complete-en-390x844.jpg"
+type = "image"
+title = "Full hero image · English · 390 px"
+description = "Playwright CLI screenshot at 390 × 844; Wafrat branding and all product packaging remain visible."
+logical_id = "c09efb91-7a77-4fa6-bc4d-e917029e0135"
+content_hash = "sha256:a49c5b170e0fe99b97596a99d3e24a648f63bf9da2a2ceec97b1ac21abfe41cc"
+size = 50128
+mtime_ms = 1793904500931
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:e843aec5-4713-402e-8285-cc49cce1aba9/c09efb91-7a77-4fa6-bc4d-e917029e0135/ddb8a212-5605-472b-a824-2b149fd432a4"
+storage_version_token = "1793904628648362"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "JYH_CJuZ3evrx3Pki4DkJ"
+uri = "file://artifacts/aldamni-corporate/screenshots/after/hero-complete-en-768x1024.jpg"
+type = "image"
+title = "Full hero image · English · 768 px"
+description = "Playwright CLI screenshot at 768 × 1024."
+logical_id = "a060dfc2-d9e5-4c0f-b121-51f60615cbc4"
+content_hash = "sha256:9814190a16ffd96590d76663e8fe31b7bfc75707696faf4474af9c6f42badb03"
+size = 128114
+mtime_ms = 1793904501447
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:e843aec5-4713-402e-8285-cc49cce1aba9/a060dfc2-d9e5-4c0f-b121-51f60615cbc4/786d3db4-a7b6-4ca6-9715-ef99c69baa56"
+storage_version_token = "1793904629933085"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "GozY7xougwe1gZrEdvAXe"
+uri = "file://artifacts/aldamni-corporate/screenshots/after/hero-complete-en-1440x1000.jpg"
+type = "image"
+title = "Full hero image · English · 1440 px"
+description = "Playwright CLI screenshot at 1440 × 1000."
+logical_id = "59c3e857-0968-4bc9-a227-c414da86e3c9"
+content_hash = "sha256:84ac666be4dd4311890736cf32ec020a805628333cdfd7420026bec175ea5b4b"
+size = 230261
+mtime_ms = 1793904502040
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:e843aec5-4713-402e-8285-cc49cce1aba9/59c3e857-0968-4bc9-a227-c414da86e3c9/d3776cb4-3e58-4cbd-bca0-13e84b131217"
+storage_version_token = "1793904631227713"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "Wnj1K8Bcu_NdNPTH13aWc"
+uri = "file://artifacts/aldamni-corporate/screenshots/after/hero-complete-ar-390x844.jpg"
+type = "image"
+title = "Full hero image · Arabic · 390 px"
+description = "Playwright CLI screenshot at 390 × 844."
+logical_id = "23d47fc1-763e-4710-8dbb-19494228365b"
+content_hash = "sha256:60f29fddf7898929f5d6b2a97f41040db495b03c218b14a3ce6acc8fb76e3ab3"
+size = 49640
+mtime_ms = 1793904503058
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:e843aec5-4713-402e-8285-cc49cce1aba9/23d47fc1-763e-4710-8dbb-19494228365b/d2f5711d-c2e7-4d2e-a022-f54fec6ff62b"
+storage_version_token = "1793904632514932"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "Q34vX5lLVTPq_Duaz87nY"
+uri = "file://artifacts/aldamni-corporate/screenshots/after/hero-complete-ar-768x1024.jpg"
+type = "image"
+title = "Full hero image · Arabic · 768 px"
+description = "Playwright CLI screenshot at 768 × 1024."
+logical_id = "206f3239-e34f-4cc0-8d3c-f480e9592790"
+content_hash = "sha256:e687978c48ccd0bcc5b4f8d75262ac09953773282a59173edd8868eeae8e27c6"
+size = 127600
+mtime_ms = 1793904503539
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:e843aec5-4713-402e-8285-cc49cce1aba9/206f3239-e34f-4cc0-8d3c-f480e9592790/a053ce40-8c83-4def-8e39-621be076b6e2"
+storage_version_token = "1793904633790022"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "DvAWHWECljUK39wl3paZM"
+uri = "file://artifacts/aldamni-corporate/screenshots/after/hero-complete-ar-1440x1000.jpg"
+type = "image"
+title = "Full hero image · Arabic · 1440 px"
+description = "Playwright CLI screenshot at 1440 × 1000."
+logical_id = "dba7a177-a503-475b-b229-3c9333a92529"
+content_hash = "sha256:1875974604182fd8ac8e1d5b0d2c95199003dd08fbc390f96ef66b6091a50218"
+size = 229412
+mtime_ms = 1793904504194
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:e843aec5-4713-402e-8285-cc49cce1aba9/dba7a177-a503-475b-b229-3c9333a92529/773c9ff1-50a7-40cf-8557-f66dda0b091f"
+storage_version_token = "1793904635167752"
+content_type = "image/jpeg"
