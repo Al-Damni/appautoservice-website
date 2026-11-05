@@ -16,10 +16,10 @@ const BRAND_ASSETS = {
 
 const copy = {
   en: {
-    nav: ['About us', 'Contact'],
-    locationLine: 'KUWAIT  ·  SYRIA  ·  ESTABLISHED 2019',
+    nav: ['About Us', 'Contact Us'],
     language: 'AR',
     menu: 'Open navigation',
+    brandCardLabel: 'Official company mark',
     heroEyebrow: 'AUTO SERVICE APP FOR GENERAL TRADING',
     heroTitle: <>Regional supply.<br /><em>Practical connections.</em></>,
     heroText: 'Supplying the Syrian Ministry of Petroleum and connecting automotive parts, lubricants, Syrian food products and hydroponic agriculture across Kuwait and Syria.',
@@ -69,9 +69,9 @@ const copy = {
   },
   ar: {
     nav: ['من نحن', 'تواصل معنا'],
-    locationLine: 'الكويت  ·  سوريا  ·  تأسست عام ٢٠١٩',
     language: 'EN',
     menu: 'فتح قائمة التنقل',
+    brandCardLabel: 'العلامة الرسمية للشركة',
     heroEyebrow: 'أوتو سيرفس اب للتجارة العامة',
     heroTitle: <>إمداد إقليمي.<br /><em>روابط عملية.</em></>,
     heroText: 'نورد لوزارة النفط السورية ونربط بين قطع غيار السيارات والزيوت والمنتجات الغذائية السورية والزراعة المائية في الكويت وسوريا.',
@@ -184,6 +184,22 @@ function App() {
     if (index === 3) return BRAND_ASSETS.hydroponics;
     return asset(image);
   };
+  const brandCard = (duplicate = false) => (
+    <article
+      className="showcase-card card-brand"
+      key={duplicate ? 'duplicate-brand' : 'brand'}
+      aria-hidden={duplicate || undefined}
+    >
+      <div className="showcase-image brand-showcase-image">
+        <img src={BRAND_ASSETS.logo} alt={duplicate ? '' : t.logoAlt} />
+        <span className="card-index">{language === 'en' ? 'BRAND' : 'العلامة'}</span>
+      </div>
+      <div className="showcase-card-copy">
+        <span>{t.brandCardLabel}</span>
+        <h3>{t.footerNote}</h3>
+      </div>
+    </article>
+  );
 
   useEffect(() => {
     document.documentElement.lang = language;
@@ -201,6 +217,7 @@ function App() {
       if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setTrackPaused(false);
     }}>
       <div className={`showcase-track${trackPaused ? ' is-paused' : ''}`}>
+        {brandCard()}
         {t.categories.map((item, index) => (
           <article className={`showcase-card card-${index + 1}`} key={item.title}>
             <div className="showcase-image">
@@ -210,6 +227,7 @@ function App() {
             <div className="showcase-card-copy"><span>{item.sub}</span><h3>{item.title}</h3></div>
           </article>
         ))}
+        {brandCard(true)}
         {t.categories.map((item, index) => (
           <article className={`showcase-card card-${index + 1} showcase-duplicate`} key={`duplicate-${item.title}`} aria-hidden="true">
             <div className="showcase-image"><img src={categoryImage(index, item.image)} alt="" /><span className="card-index">0{index + 1} / 05</span></div>
@@ -222,13 +240,12 @@ function App() {
 
   return (
     <main className={`site-shell${language === 'ar' ? ' rtl' : ''}`}>
-      <div className="utility-bar"><div className="wrap utility-inner"><span>{t.locationLine}</span><a href={getEmailUrl(language, language === 'en' ? 'general business enquiry' : 'استفسار أعمال عام')}>anas@appautoservice.com</a></div></div>
       <header className="header">
         <div className="wrap header-inner">
           <div className="brand">
-            <img className="brand-logo" src={BRAND_ASSETS.logo} alt={t.logoAlt} />
             <a href="#top" className="brand-text" aria-label={t.footerNote} onClick={(event) => { event.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
-              <strong>{language === 'en' ? 'AUTO SERVICE APP' : 'أوتو سيرفس اب'}</strong><small>{language === 'en' ? 'FOR GENERAL TRADING' : 'للتجارة العامة'}</small>
+              <strong>{language === 'en' ? 'Auto Service App' : 'أوتو سيرفس اب'}</strong>
+              <small>{language === 'en' ? 'for General Trading' : 'للتجارة العامة'}</small>
             </a>
           </div>
           <nav className="main-nav" aria-label={language === 'en' ? 'Main navigation' : 'التنقل الرئيسي'}>
@@ -323,12 +340,12 @@ function App() {
           </div>
           <div className="offices">
             <article className="office">
-              <span className="office-code">01 — KUWAIT</span><h3>{t.kuwait}</h3>
+              <span className="office-code">{language === 'en' ? '01 — KUWAIT' : '٠١ — الكويت'}</span><h3>{t.kuwait}</h3>
               <span className="office-label">{t.address}</span><p className="office-address" dir="ltr">Al-Aqaila, Taiba Mall Building, 7th Floor</p>
               <a className="office-link" href={whatsapp('96555554199', t.kuwait)} target="_blank" rel="noreferrer"><span>{t.message}</span><span dir="ltr">+965 5555 4199</span><ArrowUpRight size={15} /></a>
             </article>
             <article className="office">
-              <span className="office-code">02 — SYRIA</span><h3>{t.syria}</h3>
+              <span className="office-code">{language === 'en' ? '02 — SYRIA' : '٠٢ — سوريا'}</span><h3>{t.syria}</h3>
               <span className="office-label">{t.address}</span><p className="office-address" dir="ltr">Rif Dimashq, Qura Al-Sham, Building 43</p>
               <a className="office-link" href={whatsapp('963959811087', t.syria)} target="_blank" rel="noreferrer"><span>{t.message}</span><span dir="ltr">+963 959 811 087</span><ArrowUpRight size={15} /></a>
             </article>
