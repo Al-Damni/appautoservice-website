@@ -1,5 +1,9 @@
 import { useEffect, useRef, useState, type ChangeEvent, type DragEvent } from 'react';
 import { ArrowDown, ArrowDownToLine, ArrowUpRight, ChevronDown, ImagePlus, Menu, Trash2, X } from 'lucide-react';
+import oliveOilAndCheeseImage from '@assets/Gemini_Generated_Image_oylb7ioylb7ioylb_(2)_1793863143115.jpg';
+import autoOilImage from '@assets/Gemini_Generated_Image_oylb7ioylb7ioylb_(1)_1793863143115.jpg';
+import companyLogoImage from '@assets/Gemini_Generated_Image_oylb7ioylb7ioylb_(3)_1793863143116.jpg';
+import hydroponicGreenhouseImage from '@assets/Gemini_Generated_Image_oylb7ioylb7ioylb_1793863143117.jpg';
 
 type Language = 'en' | 'ar';
 type AssetRecord = { slot: string; blob: Blob };
@@ -8,10 +12,10 @@ const DB_NAME = 'auto-service-corporate-assets';
 const STORE_NAME = 'images';
 const ASSET_CHANGE_EVENT = 'auto-service-image-updated';
 const BRAND_ASSETS = {
-  logo: 'https://storage.googleapis.com/generative-ai-assets/watermarked_img_11949001160800985357.jpg',
-  lubricants: 'https://storage.googleapis.com/generative-ai-assets/watermarked_img_12343310226894577826.jpg',
-  food: 'https://storage.googleapis.com/generative-ai-assets/watermarked_img_6859796707920059445.jpg',
-  hydroponics: 'https://storage.googleapis.com/generative-ai-assets/watermarked_img_15559221312499759710.jpg',
+  logo: companyLogoImage,
+  lubricants: autoOilImage,
+  food: oliveOilAndCheeseImage,
+  hydroponics: hydroponicGreenhouseImage,
 };
 
 function openAssetDb(): Promise<IDBDatabase> {
@@ -106,10 +110,10 @@ const copy = {
     sectorsTitle: 'Five sectors. One regional perspective.',
     sectorsText: 'A general trading company working across essential products and supply categories.',
     categories: [
-      { title: 'Engine oils & lubricants', sub: 'Automotive products', image: 'auto-service-lubricants.jpg', alt: 'Unbranded engine oil containers and workshop tools' },
-      { title: 'Olive oil & artisanal cheese', sub: 'Syrian food products', image: 'auto-service-food.jpg', alt: 'Olive oil, olives and artisanal cheeses on a table' },
+      { title: 'Engine oils & lubricants', sub: 'Automotive products', image: 'auto-service-lubricants.jpg', alt: 'Auto-Oil 5000, 10000 and 15000 engine oil bottles' },
+      { title: 'Olive oil & artisanal cheese', sub: 'Syrian food products', image: 'auto-service-food.jpg', alt: 'Shamco Wafrat El-Sham olive oil, olives and cheeses' },
       { title: 'Automotive spare parts', sub: 'Through the Auto Service App', image: 'auto-service-parts.jpg', alt: 'Automotive spare parts in a working garage' },
-      { title: 'Hydroponic agriculture', sub: 'Controlled growing', image: 'auto-service-greenhouse.jpg', alt: 'Hydroponic growing rows inside a greenhouse' },
+      { title: 'Hydroponic agriculture', sub: 'Controlled growing', image: 'auto-service-greenhouse.jpg', alt: 'Hydroponic greenhouse growing lettuce, tomatoes and cucumbers' },
       { title: 'Petroleum tankers', sub: 'Petroleum supply', image: 'auto-service-petroleum.jpg', alt: 'Petroleum tanker and storage infrastructure at dusk' },
     ],
     sectorCards: [
@@ -167,10 +171,10 @@ const copy = {
     sectorsTitle: 'خمسة قطاعات. ورؤية إقليمية واحدة.',
     sectorsText: 'شركة تجارة عامة تعمل عبر فئات أساسية من المنتجات والإمدادات.',
     categories: [
-      { title: 'زيوت المحركات ومواد التشحيم', sub: 'منتجات السيارات', image: 'auto-service-lubricants.jpg', alt: 'عبوات زيوت محركات وأدوات ورشة دون علامات تجارية' },
-      { title: 'زيت الزيتون والأجبان الحرفية', sub: 'منتجات غذائية سورية', image: 'auto-service-food.jpg', alt: 'زيت زيتون وزيتون وأجبان حرفية على مائدة' },
+      { title: 'زيوت المحركات ومواد التشحيم', sub: 'منتجات السيارات', image: 'auto-service-lubricants.jpg', alt: 'عبوات زيوت محركات أوتو أويل 5000 و10000 و15000' },
+      { title: 'زيت الزيتون والأجبان الحرفية', sub: 'منتجات غذائية سورية', image: 'auto-service-food.jpg', alt: 'منتجات شامكو وفرات الشام من زيت الزيتون والزيتون والأجبان' },
       { title: 'قطع غيار السيارات', sub: 'من خلال تطبيق Auto Service', image: 'auto-service-parts.jpg', alt: 'قطع غيار سيارات في ورشة عمل' },
-      { title: 'الزراعة المائية', sub: 'زراعة محكومة', image: 'auto-service-greenhouse.jpg', alt: 'صفوف زراعة مائية داخل بيت محمي' },
+      { title: 'الزراعة المائية', sub: 'زراعة محكومة', image: 'auto-service-greenhouse.jpg', alt: 'بيت محمي للزراعة المائية للخس والطماطم والخيار' },
       { title: 'ناقلات النفط', sub: 'إمدادات نفطية', image: 'auto-service-petroleum.jpg', alt: 'ناقلة نفط وبنية تخزين عند الغروب' },
     ],
     sectorCards: [
@@ -319,7 +323,7 @@ function App() {
   const logoControl = {
     slot: 'company-logo',
     initial: BRAND_ASSETS.logo,
-    fallback: asset('auto-service-logo-placeholder.svg'),
+    fallback: BRAND_ASSETS.logo,
     alt: t.logoAlt,
     label: t.footerNote,
     addText: t.editLogo,
@@ -458,7 +462,7 @@ function App() {
       <section className="company-section" id="company">
         <div className="wrap company-grid">
           <div className="company-image">
-            <img src={asset('auto-service-greenhouse.jpg')} alt={language === 'en' ? 'Hydroponic agriculture in a greenhouse' : 'زراعة مائية داخل بيت محمي'} />
+            <img src={BRAND_ASSETS.hydroponics} alt={language === 'en' ? 'Hydroponic greenhouse producing lettuce, tomatoes and cucumbers' : 'بيت محمي للزراعة المائية ينتج الخس والطماطم والخيار'} />
             <span className="image-caption">{language === 'en' ? 'REGIONAL BUSINESS · SINCE 2019' : 'أعمال إقليمية · منذ ٢٠١٩'}</span>
           </div>
           <div className="company-copy">

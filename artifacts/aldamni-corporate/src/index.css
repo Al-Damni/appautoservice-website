@@ -72,7 +72,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid #bd8059; outline-offs
 .header { position: sticky; top: 0; z-index: 30; background: rgba(246, 243, 235, .96); border-bottom: 1px solid #ded8cb; backdrop-filter: blur(14px); }
 .header-inner { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
 .brand { display: flex; align-items: center; gap: 12px; color: #1b3932; text-decoration: none; min-width: 250px; }
-.logo-uploader { width: 46px; height: 46px; flex: none; }
+.logo-uploader { width: 76px; height: 46px; flex: none; }
 .brand-text { display: flex; flex-direction: column; line-height: 1.12; }
 .brand-text strong { font: 800 12px/1.2 var(--app-font-display); letter-spacing: .11em; }
 .brand-text small { margin-top: 5px; font-size: 8px; letter-spacing: .18em; color: #78817a; }
@@ -245,7 +245,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid #bd8059; outline-offs
   .utility-inner { min-height: 29px; }
   .header-inner { min-height: 68px; }
   .brand { gap: 8px; }
-  .logo-uploader { height: 39px; width: 39px; }
+  .logo-uploader { height: 39px; width: 56px; }
   .brand-text strong { max-width: 175px; font-size: 10px; letter-spacing: .07em; }
   .brand-text small { font-size: 7px; }
   .main-nav, .header-actions>.header-wa { display: none; }
