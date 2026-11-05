@@ -1,1 +1,2 @@
 - [Auto Service company profile](corporate-profile-facts.md) — keep the legal name, registration, history, regional hubs, and sector scope consistent across the site and profile.
+- [Playwright CLI sessions](playwright-cli-sessions.md) — open, test, and close the browser in one ShellExec call; later calls may not retain the session.

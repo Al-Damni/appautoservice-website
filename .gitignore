@@ -17,6 +17,16 @@ out-tsc
 # dependencies
 node_modules
 
+# local secrets (keep example templates)
+.env*
+!.env.example
+
+# local agent tooling and browser downloads
+/.agents/skills/
+/skills-lock.json
+/.cache/
+**/.playwright-cli/
+
 # IDEs and editors
 /.idea
 .project

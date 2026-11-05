@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ArrowDown, ArrowDownToLine, ArrowUpRight, ChevronDown, Menu, X } from 'lucide-react';
+import { ArrowDown, ArrowDownToLine, ArrowUpRight, ChevronDown, Pause, Play } from 'lucide-react';
 import oliveOilAndCheeseImage from '@assets/Gemini_Generated_Image_oylb7ioylb7ioylb_(2)_1793863143115.jpg';
 import autoOilImage from '@assets/Gemini_Generated_Image_oylb7ioylb7ioylb_(1)_1793863143115.jpg';
 import hydroponicGreenhouseImage from '@assets/Gemini_Generated_Image_oylb7ioylb7ioylb_1793863143117.jpg';
@@ -8,7 +8,6 @@ type Language = 'en' | 'ar';
 const asset = (name: string) => `${import.meta.env.BASE_URL}${name}`;
 const BRAND_ASSETS = {
   logo: `${import.meta.env.BASE_URL}images/Gemini_Generated_Image_jfi82pjfi82pjfi8_1793866780300.jpg`,
-  appInterface: 'https://www.appautoservice.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fhero-image-en.a85f4334.png&w=640&q=75',
   lubricants: autoOilImage,
   food: oliveOilAndCheeseImage,
   hydroponics: hydroponicGreenhouseImage,
@@ -20,7 +19,8 @@ const copy = {
     language: 'AR',
     menu: 'Open navigation',
     brandCardLabel: 'Official company mark',
-    heroEyebrow: 'AUTO SERVICE APP FOR GENERAL TRADING LLC',
+    pauseShowcase: 'Pause product showcase',
+    resumeShowcase: 'Resume product showcase',
     heroTitle: <>Essential sectors.<br /><em>Trusted supply.</em></>,
     heroText: 'From petroleum derivatives for the Syrian Ministry of Petroleum to automotive spare parts, our own lubricants, food imports for Kuwait’s cooperative societies and hydroponics in Syria.',
     explore: 'Explore our sectors',
@@ -31,7 +31,6 @@ const copy = {
     inquirySyria: 'Syria WhatsApp · +963 959811087',
     inquiryEmail: 'Email · anas@appautoservice.com',
     established: 'ESTABLISHED',
-    sectorsEyebrow: 'A connected portfolio',
     sectorsTitle: 'Five sectors. One regional perspective.',
     sectorsText: 'A Kuwait-established company connecting mobility, food, agriculture and essential energy supply.',
     categories: [
@@ -43,11 +42,11 @@ const copy = {
     ],
     sectorCards: [
       { id: 'energy', name: 'Petroleum & energy', description: 'Petroleum supply and logistics for the Syrian Ministry of Petroleum.' },
-      { id: 'automotive', name: 'Auto service & lubricants', description: 'The Auto Service App, spare parts, and our own Auto-Oil 5000, 10000 and 15000 lubricants.' },
+      { id: 'automotive', name: 'Auto spare parts', description: 'The Auto Service App for automotive spare parts.' },
+      { id: 'lubricants', name: 'Auto-Oil lubricants', description: 'Our own Auto-Oil 5000, 10000 and 15000 lubricants.' },
       { id: 'food', name: 'Fine food products', description: 'Fine-food imports for Kuwait’s cooperative societies, including Shamco Wafrat El-Sham olive oil, olives and Syrian cheeses.' },
       { id: 'hydroponics', name: 'Hydroponic agriculture', description: 'Modern greenhouse production for local lettuce, tomatoes and cucumbers in Syria.' },
     ],
-    companyEyebrow: 'A Kuwait-established LLC',
     companyTitle: <>From an auto service app<br />to a regional supplier.</>,
     companyCopy: 'Auto Service App for General Trading LLC was established in Kuwait in 2019 (Commercial Registration No. 421940) as a limited liability company. It began with its automotive spare-parts app, then expanded into fine-food imports for Kuwait’s cooperative societies, developed its own automotive lubricants brand, and introduced hydroponic systems in Syria for lettuce, tomatoes and cucumbers. Today, it also supplies vital petroleum derivatives, including to the Syrian Ministry of Petroleum.',
     companyNote: 'A Kuwait-established limited liability company.',
@@ -57,7 +56,6 @@ const copy = {
     registrationNumber: '421940',
     hubs: 'Regional hubs',
     hubNames: 'Kuwait · Syria',
-    contactEyebrow: 'Business enquiries',
     contactTitle: 'Talk to our regional offices.',
     contactCopy: 'For business enquiries, reach us by email or WhatsApp at the appropriate office.',
     kuwait: 'Kuwait',
@@ -76,7 +74,8 @@ const copy = {
     language: 'EN',
     menu: 'فتح قائمة التنقل',
     brandCardLabel: 'العلامة الرسمية للشركة',
-    heroEyebrow: 'شركة أوتو سيرفس اب للتجارة العامة ذ.م.م',
+    pauseShowcase: 'إيقاف عرض المنتجات مؤقتاً',
+    resumeShowcase: 'استئناف عرض المنتجات',
     heroTitle: <>قطاعات حيوية.<br /><em>توريد موثوق.</em></>,
     heroText: 'من المشتقات النفطية لوزارة النفط السورية إلى قطع الغيار وزيوت التشحيم بعلامتنا الخاصة وواردات الأغذية للجمعيات التعاونية في الكويت وأنظمة الزراعة المائية في سوريا.',
     explore: 'اكتشف قطاعاتنا',
@@ -87,7 +86,6 @@ const copy = {
     inquirySyria: 'تواصل عبر واتساب سوريا (Syria WhatsApp)',
     inquiryEmail: 'إرسال بريد إلكتروني (Email)',
     established: 'تأسست عام',
-    sectorsEyebrow: 'محفظة مترابطة',
     sectorsTitle: 'خمسة قطاعات. ورؤية إقليمية واحدة.',
     sectorsText: 'شركة تأسست في الكويت وتربط بين التنقل والغذاء والزراعة وإمدادات الطاقة الأساسية.',
     categories: [
@@ -99,11 +97,11 @@ const copy = {
     ],
     sectorCards: [
       { id: 'energy', name: 'النفط والطاقة', description: 'إمدادات نفطية وخدمات لوجستية لوزارة النفط السورية.' },
-      { id: 'automotive', name: 'خدمات السيارات والزيوت', description: 'تطبيق أوتو سيرفس وقطع الغيار وعلامتنا الخاصة من زيوت Auto-Oil 5000 و10000 و15000.' },
+      { id: 'automotive', name: 'قطع غيار السيارات', description: 'تطبيق أوتو سيرفس لقطع غيار السيارات.' },
+      { id: 'lubricants', name: 'زيوت Auto-Oil', description: 'زيوت Auto-Oil 5000 و10000 و15000 بعلامتنا الخاصة.' },
       { id: 'food', name: 'المنتجات الغذائية الفاخرة', description: 'استيراد منتجات غذائية للجمعيات التعاونية في الكويت، تشمل زيت زيتون وزيتون وأجباناً سورية من شامكو وفرات الشام.' },
       { id: 'hydroponics', name: 'الزراعة المائية', description: 'إنتاج حديث داخل البيوت المحمية للخس والطماطم والخيار في سوريا.' },
     ],
-    companyEyebrow: 'شركة تأسست في الكويت',
     companyTitle: <>من تطبيق لخدمة السيارات<br />إلى مورّد إقليمي.</>,
     companyCopy: 'تأسست شركة أوتو سيرفس اب للتجارة العامة ذ.م.م في الكويت عام ٢٠١٩ (رقم السجل التجاري ٤٢١٩٤٠) كشركة ذات مسؤولية محدودة. بدأت بتطبيقها لقطع غيار السيارات، ثم توسعت إلى استيراد المنتجات الغذائية للجمعيات التعاونية في الكويت، وطورت علامتها الخاصة لزيوت التشحيم، وأدخلت أنظمة الزراعة المائية في سوريا لإنتاج الخس والطماطم والخيار. وتورد اليوم مشتقات نفطية حيوية، منها الإمداد لوزارة النفط السورية.',
     companyNote: 'شركة ذات مسؤولية محدودة تأسست في الكويت.',
@@ -113,7 +111,6 @@ const copy = {
     registrationNumber: '٤٢١٩٤٠',
     hubs: 'مراكز إقليمية',
     hubNames: 'الكويت · سوريا',
-    contactEyebrow: 'استفسارات الأعمال',
     contactTitle: 'تواصل مع مكاتبنا الإقليمية.',
     contactCopy: 'لاستفسارات الأعمال، تواصلوا معنا عبر البريد الإلكتروني أو واتساب للمكتب المناسب.',
     kuwait: 'الكويت',
@@ -217,26 +214,24 @@ function OfficialLogoMark() {
 
 function App() {
   const [language, setLanguage] = useState<Language>('en');
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [trackPaused, setTrackPaused] = useState(false);
+  const [trackPaused, setTrackPaused] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  const [reducedMotion, setReducedMotion] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   const t = copy[language];
   const navIds = ['company', 'contact'];
   const categoryImage = (index: number, image: string) => {
     if (index === 0) return BRAND_ASSETS.lubricants;
     if (index === 1) return BRAND_ASSETS.food;
-    if (index === 2) return BRAND_ASSETS.appInterface;
+    if (index === 2) return asset('auto-service-parts.jpg');
     if (index === 3) return BRAND_ASSETS.hydroponics;
     return asset(image);
   };
-  const brandCard = (duplicate = false) => (
+  const brandCard = () => (
     <article
       className="showcase-card card-brand"
-      key={duplicate ? 'duplicate-brand' : 'brand'}
-      aria-hidden={duplicate || undefined}
+      key="brand"
     >
       <div className="showcase-image brand-showcase-image">
-        <img src={BRAND_ASSETS.logo} alt={duplicate ? '' : t.logoAlt} width={1099} height={976} />
-        <span className="card-index">{language === 'en' ? 'BRAND' : 'العلامة'}</span>
+        <img src={BRAND_ASSETS.logo} alt={t.logoAlt} width={1024} height={976} loading="eager" decoding="async" />
       </div>
       <div className="showcase-card-copy">
         <span>{t.brandCardLabel}</span>
@@ -250,39 +245,58 @@ function App() {
     document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
   }, [language]);
 
+  useEffect(() => {
+    const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const updatePreference = () => {
+      setReducedMotion(preference.matches);
+      if (preference.matches) setTrackPaused(true);
+    };
+    preference.addEventListener('change', updatePreference);
+    return () => preference.removeEventListener('change', updatePreference);
+  }, []);
+
   const go = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
-    setMobileOpen(false);
   };
 
   const whatsapp = (phone: string, topic = language === 'en' ? 'general business enquiry' : 'استفسار أعمال عام') => getWhatsAppUrl(phone, language, topic);
   const showcase = (
-    <div className="showcase-viewport" onMouseEnter={() => setTrackPaused(true)} onMouseLeave={() => setTrackPaused(false)} onFocus={() => setTrackPaused(true)} onBlur={(event) => {
-      if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setTrackPaused(false);
-    }}>
-      <div className={`showcase-track${trackPaused ? ' is-paused' : ''}`}>
-        {brandCard()}
-        {t.categories.map((item, index) => (
-          <article className={`showcase-card card-${index + 1}`} key={item.title}>
-            <div className="showcase-image">
-              <img src={categoryImage(index, item.image)} alt={item.alt} />
-              <img className="showcase-brand-stamp" src={BRAND_ASSETS.logo} alt="" aria-hidden="true" width={1099} height={976} />
-              <span className="card-index">0{index + 1} / 05</span>
-            </div>
-            <div className="showcase-card-copy"><span>{item.sub}</span><h3>{item.title}</h3></div>
-          </article>
-        ))}
-        {brandCard(true)}
-        {t.categories.map((item, index) => (
-          <article className={`showcase-card card-${index + 1} showcase-duplicate`} key={`duplicate-${item.title}`} aria-hidden="true">
-            <div className="showcase-image">
-              <img src={categoryImage(index, item.image)} alt="" />
-              <img className="showcase-brand-stamp" src={BRAND_ASSETS.logo} alt="" aria-hidden="true" width={1099} height={976} />
-              <span className="card-index">0{index + 1} / 05</span>
-            </div>
-            <div className="showcase-card-copy"><span>{item.sub}</span><h3>{item.title}</h3></div>
-          </article>
-        ))}
+    <div className="showcase-layout">
+      {brandCard()}
+      <div className="showcase-viewport">
+        <div className={`showcase-track${trackPaused ? ' is-paused' : ''}`}>
+          {t.categories.map((item, index) => (
+            <article className={`showcase-card card-${index + 1}`} key={item.title}>
+              <div className="showcase-image">
+                <img src={categoryImage(index, item.image)} alt={item.alt} width={1024} height={576} loading="eager" decoding="async" />
+              </div>
+              <div className="showcase-card-copy"><span>{item.sub}</span><h3>{item.title}</h3></div>
+            </article>
+          ))}
+          {t.categories.map((item, index) => (
+            <article className={`showcase-card card-${index + 1} showcase-duplicate`} key={`duplicate-${item.title}`} aria-hidden="true">
+              <div className="showcase-image">
+                <img src={categoryImage(index, item.image)} alt="" width={1024} height={576} loading="eager" decoding="async" />
+              </div>
+              <div className="showcase-card-copy"><span>{item.sub}</span><h3>{item.title}</h3></div>
+            </article>
+          ))}
+        </div>
+      </div>
+      <div className="showcase-controls wrap">
+        <span>{language === 'en' ? 'Product & operations showcase' : 'عرض المنتجات والعمليات'}</span>
+        <button
+          type="button"
+          className="showcase-toggle"
+          onClick={() => setTrackPaused(!trackPaused)}
+          aria-label={trackPaused ? t.resumeShowcase : t.pauseShowcase}
+          aria-pressed={trackPaused}
+          disabled={reducedMotion}
+          data-testid="button-showcase-toggle"
+        >
+          {trackPaused ? <Play size={15} aria-hidden="true" /> : <Pause size={15} aria-hidden="true" />}
+          {trackPaused ? (language === 'en' ? 'Resume motion' : 'استئناف الحركة') : (language === 'en' ? 'Pause motion' : 'إيقاف الحركة')}
+        </button>
       </div>
     </div>
   );
@@ -291,29 +305,24 @@ function App() {
     <main className={`site-shell${language === 'ar' ? ' rtl' : ''}`}>
       <header className="header">
         <div className="wrap header-inner">
-          <a href="#top" className="brand" aria-label={t.footerNote} onClick={(event) => { event.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
-            <img className="brand-logo" src={BRAND_ASSETS.logo} alt="" width={1099} height={976} />
+          <a href="#top" className="brand" aria-label={t.footerNote} onClick={(event) => { event.preventDefault(); window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); }}>
             <span className="brand-text">
-              <strong>{language === 'en' ? 'Auto Service App' : 'شركة أوتو سيرفس اب'}</strong>
-              <small>{language === 'en' ? 'for General Trading LLC' : 'للتجارة العامة ذ.م.م'}</small>
+              <strong>{language === 'en' ? 'Auto Service App for General Trading LLC' : 'شركة أوتو سيرفس اب للتجارة العامة ذ.م.م'}</strong>
             </span>
           </a>
           <nav className="main-nav" aria-label={language === 'en' ? 'Main navigation' : 'التنقل الرئيسي'}>
-            {t.nav.map((label, index) => <button type="button" key={label} onClick={() => go(navIds[index])}>{label}</button>)}
+            {t.nav.map((label, index) => <a href={`#${navIds[index]}`} key={label} data-testid={`link-nav-${navIds[index]}`}>{label}</a>)}
           </nav>
           <div className="header-actions">
-            <button type="button" className="language-btn" onClick={() => setLanguage(language === 'en' ? 'ar' : 'en')} aria-label={language === 'en' ? 'Switch to Arabic' : 'Switch to English'}>{t.language}<ChevronDown size={13} /></button>
-            <button type="button" className="menu-btn" aria-label={t.menu} aria-expanded={mobileOpen} onClick={() => setMobileOpen(!mobileOpen)}>{mobileOpen ? <X size={19} /> : <Menu size={19} />}</button>
+            <button type="button" className="language-btn" onClick={() => setLanguage(language === 'en' ? 'ar' : 'en')} aria-label={language === 'en' ? 'Switch to Arabic' : 'Switch to English'} data-testid="button-language-toggle">{t.language}<ChevronDown size={13} /></button>
           </div>
         </div>
-        {mobileOpen && <nav className="mobile-panel" aria-label={language === 'en' ? 'Mobile navigation' : 'تنقل الهاتف'}>{t.nav.map((label, index) => <button type="button" key={label} onClick={() => go(navIds[index])}>{label}</button>)}</nav>}
       </header>
 
       <section className="hero" id="top">
         <div className="hero-image" style={{ backgroundImage: `url("${asset('auto-service-petroleum.jpg')}")` }} role="img" aria-label={language === 'en' ? 'Petroleum storage and regional tanker infrastructure' : 'خزانات نفط وبنية نقل إقليمية'} />
         <div className="hero-shade" />
         <div className="wrap hero-content">
-          <div className="hero-eyebrow"><span className="eyebrow-line" />{t.heroEyebrow}</div>
           <h1>{t.heroTitle}</h1>
           <p>{t.heroText}</p>
           <div className="hero-actions">
@@ -332,12 +341,11 @@ function App() {
           <button type="button" className="hero-explore" onClick={() => go('sectors')}>{t.explore}<ArrowDown size={15} /></button>
           <div className="hero-bottom"><span>{language === 'en' ? 'KUWAIT / SYRIA' : 'الكويت / سوريا'}</span><span className="hero-est"><b>2019</b> {t.established}</span></div>
         </div>
-        <span className="hero-coordinate">29°22' N&nbsp; 47°59' E</span>
       </section>
 
       <section className="showcase-section" id="sectors">
         <div className="wrap showcase-heading">
-          <div><div className="section-kicker">{t.sectorsEyebrow}</div><h2>{t.sectorsTitle}</h2></div>
+          <div><h2>{t.sectorsTitle}</h2></div>
           <p>{t.sectorsText}</p>
         </div>
         {showcase}
@@ -347,13 +355,11 @@ function App() {
       <section className="sector-directory" aria-labelledby="sector-directory-title">
         <div className="wrap">
           <div className="sector-directory-heading">
-            <div className="section-kicker">{t.sectorsEyebrow}</div>
-            <h2 id="sector-directory-title">{language === 'en' ? 'Trading across essential sectors.' : 'تجارة في قطاعات أساسية.'}</h2>
+            <h2 id="sector-directory-title">{language === 'en' ? 'Our sectors' : 'قطاعاتنا'}</h2>
           </div>
           <div className="sector-directory-grid">
             {t.sectorCards.map((sector, index) => (
               <article className={`sector-detail sector-detail-${index + 1}`} id={sector.id} key={sector.id}>
-                <span className="sector-number">0{index + 1}</span>
                 <h3>{sector.name}</h3>
                 <p>{sector.description}</p>
                 <InquiryMenu language={language} topic={sector.name} label={t.inquire} testId={`sector-${sector.id}`} className="inquiry-menu-sector" summaryClassName="sector-inquiry-button" />
@@ -366,11 +372,9 @@ function App() {
       <section className="company-section" id="company">
         <div className="wrap company-grid">
           <div className="company-image">
-            <img src={BRAND_ASSETS.hydroponics} alt={language === 'en' ? 'Hydroponic greenhouse producing lettuce, tomatoes and cucumbers' : 'بيت محمي للزراعة المائية ينتج الخس والطماطم والخيار'} />
-            <span className="image-caption">{language === 'en' ? 'REGIONAL BUSINESS · SINCE 2019' : 'أعمال إقليمية · منذ ٢٠١٩'}</span>
+            <img src={BRAND_ASSETS.hydroponics} alt={language === 'en' ? 'Hydroponic greenhouse producing lettuce, tomatoes and cucumbers' : 'بيت محمي للزراعة المائية ينتج الخس والطماطم والخيار'} width={1024} height={576} loading="lazy" decoding="async" />
           </div>
           <div className="company-copy">
-            <div className="section-kicker">{t.companyEyebrow}</div>
             <h2>{t.companyTitle}</h2>
             <p>{t.companyCopy}</p>
             <div className="company-note">{t.companyNote}</div>
@@ -386,23 +390,23 @@ function App() {
       <footer className="contact-section" id="contact">
         <div className="wrap">
           <div className="contact-intro">
-            <div><div className="section-kicker">{t.contactEyebrow}</div><h2>{t.contactTitle}</h2></div>
-            <div className="contact-aside"><p>{t.contactCopy}</p><span className="contact-email-label">{t.email}</span><a className="email-link" href={getEmailUrl(language, language === 'en' ? 'general business enquiry' : 'استفسار أعمال عام')}>anas@appautoservice.com<ArrowUpRight size={15} /></a></div>
+            <div><h2>{t.contactTitle}</h2></div>
+            <div className="contact-aside"><p>{t.contactCopy}</p><a className="email-link" href={getEmailUrl(language, language === 'en' ? 'general business enquiry' : 'استفسار أعمال عام')} data-testid="link-contact-email">anas@appautoservice.com<ArrowUpRight size={15} /></a></div>
           </div>
           <div className="offices">
             <article className="office">
-              <span className="office-code">{language === 'en' ? '01 — KUWAIT' : '٠١ — الكويت'}</span><h3>{t.kuwait}</h3>
+              <h3>{t.kuwait}</h3>
               <span className="office-label">{t.address}</span><p className="office-address" dir={language === 'en' ? 'ltr' : 'rtl'}>{t.kuwaitAddress}</p>
-              <a className="office-link" href={whatsapp('96555554199', t.kuwait)} target="_blank" rel="noreferrer"><span>{t.message}</span><span dir="ltr">+965 5555 4199</span><ArrowUpRight size={15} /></a>
+              <a className="office-link" href={whatsapp('96555554199', t.kuwait)} target="_blank" rel="noopener noreferrer" data-testid="link-contact-kuwait-whatsapp"><span>{t.message}</span><span dir="ltr">+965 5555 4199</span><ArrowUpRight size={15} /></a>
             </article>
             <article className="office">
-              <span className="office-code">{language === 'en' ? '02 — SYRIA' : '٠٢ — سوريا'}</span><h3>{t.syria}</h3>
+              <h3>{t.syria}</h3>
               <span className="office-label">{t.address}</span><p className="office-address" dir={language === 'en' ? 'ltr' : 'rtl'}>{t.syriaAddress}</p>
-              <a className="office-link" href={whatsapp('963959811087', t.syria)} target="_blank" rel="noreferrer"><span>{t.message}</span><span dir="ltr">+963 959 811 087</span><ArrowUpRight size={15} /></a>
+              <a className="office-link" href={whatsapp('963959811087', t.syria)} target="_blank" rel="noopener noreferrer" data-testid="link-contact-syria-whatsapp"><span>{t.message}</span><span dir="ltr">+963 959 811 087</span><ArrowUpRight size={15} /></a>
             </article>
           </div>
           <div className="footer-bottom">
-            <a href="#top" className="footer-brand" onClick={(event) => { event.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>{t.footerNote}</a>
+            <a href="#top" className="footer-brand" data-testid="link-back-to-top" onClick={(event) => { event.preventDefault(); window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); }}>{t.footerNote}</a>
             <span>KUWAIT · SYRIA</span><span>© 2019</span>
           </div>
         </div>
