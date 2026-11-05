@@ -14,3 +14,87 @@ mtime_ms = 1793862818051
 storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:e843aec5-4713-402e-8285-cc49cce1aba9/f36a8922-bf5a-4cf0-84e5-bd2a47dc2a09/10d85501-167d-452a-a53c-cfaa1d216fc1"
 storage_version_token = "1793862879977113"
 content_type = "application/pdf"
+
+[[outputs]]
+id = "vcqKjwkkDHNOPozOjmQAk"
+uri = "file://artifacts/aldamni-corporate/screenshots/after/home-hero-en-390x844.jpg"
+type = "image"
+title = "Home hero · English · 390 px"
+description = "Playwright CLI screenshot at 390 × 844."
+logical_id = "138bf975-507a-4b51-a4f0-264e4dd4c360"
+content_hash = "sha256:86746dcb3ab47c849801f5e6dccbca07a5901b3ee64298a1cfee495698af5d9b"
+size = 63346
+mtime_ms = 1793903468627
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:e843aec5-4713-402e-8285-cc49cce1aba9/138bf975-507a-4b51-a4f0-264e4dd4c360/149c58bb-1d16-4c98-b2ed-c079e416cab0"
+storage_version_token = "1793903577435622"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "79fp_xIvKyYIIONRZNCUv"
+uri = "file://artifacts/aldamni-corporate/screenshots/after/home-hero-en-768x1024.jpg"
+type = "image"
+title = "Home hero · English · 768 px"
+description = "Playwright CLI screenshot at 768 × 1024."
+logical_id = "99be7037-cbfb-41f1-9aaf-5677af96a925"
+content_hash = "sha256:8e9ab1d661bdc63fda77a4fa352d87920cb255ba708dd5f4f0e5302c80dad05f"
+size = 135929
+mtime_ms = 1793903470719
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:e843aec5-4713-402e-8285-cc49cce1aba9/99be7037-cbfb-41f1-9aaf-5677af96a925/d15be456-603e-424c-9eb5-339aaaae014c"
+storage_version_token = "1793903578759683"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "Qiqfis2mkZ9PbMhMWCu1F"
+uri = "file://artifacts/aldamni-corporate/screenshots/after/home-hero-en-1440x1000.jpg"
+type = "image"
+title = "Home hero · English · 1440 px"
+description = "Playwright CLI screenshot at 1440 × 1000."
+logical_id = "8d25aa36-e5ef-4b55-a8f8-da89769de3a8"
+content_hash = "sha256:226d3a359d6f65251f1722638a8d6aecf62aad01114b2087a274e6979bbc7ff7"
+size = 227389
+mtime_ms = 1793903472820
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:e843aec5-4713-402e-8285-cc49cce1aba9/8d25aa36-e5ef-4b55-a8f8-da89769de3a8/331ec7b1-a1bc-407d-8aa4-4857d39249fe"
+storage_version_token = "1793903580111722"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "VwMaWen0BGn2YK5tieCsa"
+uri = "file://artifacts/aldamni-corporate/screenshots/after/home-hero-ar-390x844.jpg"
+type = "image"
+title = "Home hero · Arabic · 390 px"
+description = "Playwright CLI screenshot at 390 × 844."
+logical_id = "bca667a0-227c-43a1-8b4a-e1cea315fb4d"
+content_hash = "sha256:8208bb5bfc2bb1027301ecf287e6210c23312f127df0aa3d2e7fe920e00ea9d8"
+size = 62110
+mtime_ms = 1793903477261
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:e843aec5-4713-402e-8285-cc49cce1aba9/bca667a0-227c-43a1-8b4a-e1cea315fb4d/e2f80f6f-6d46-45f3-9353-dc0bbd5028ce"
+storage_version_token = "1793903581389552"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "4Df9tFiBxGI1yi9VVkmUV"
+uri = "file://artifacts/aldamni-corporate/screenshots/after/home-hero-ar-768x1024.jpg"
+type = "image"
+title = "Home hero · Arabic · 768 px"
+description = "Playwright CLI screenshot at 768 × 1024."
+logical_id = "c93c5eed-1c62-46ce-bf5c-0e32c489f4af"
+content_hash = "sha256:88bbb6b4ab851f2c35492beb6923c84788440a8ecd249382533a0bd4c1afb7f4"
+size = 135568
+mtime_ms = 1793903479246
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:e843aec5-4713-402e-8285-cc49cce1aba9/c93c5eed-1c62-46ce-bf5c-0e32c489f4af/0a1fd342-8bbd-4aab-94a8-337dc996dd68"
+storage_version_token = "1793903582676731"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "0EftpWTiSpc6B34HQ2ir2"
+uri = "file://artifacts/aldamni-corporate/screenshots/after/home-hero-ar-1440x1000.jpg"
+type = "image"
+title = "Home hero · Arabic · 1440 px"
+description = "Playwright CLI screenshot at 1440 × 1000."
+logical_id = "c5f87d42-315a-463c-a64b-132b9030b235"
+content_hash = "sha256:623cc801bf0ef9b8129efa347b292d3f3b4a648b351e05ab95de826063a07141"
+size = 227129
+mtime_ms = 1793903481211
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:e843aec5-4713-402e-8285-cc49cce1aba9/c5f87d42-315a-463c-a64b-132b9030b235/0e9706f4-e039-4c3e-bdab-c7d89d55719d"
+storage_version_token = "1793903583942540"
+content_type = "image/jpeg"
