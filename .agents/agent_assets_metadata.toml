@@ -1,0 +1,16 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "i-ZLSXW4cCYn2pfUkqKH0"
+uri = "file://artifacts/aldamni-corporate/public/corporate-profile.pdf"
+type = "pdf"
+title = "Auto Service App — Company Profile"
+description = "Two-page bilingual English and Arabic company profile PDF."
+logical_id = "f36a8922-bf5a-4cf0-84e5-bd2a47dc2a09"
+content_hash = "sha256:2bb03fb02ad22d2e31dda02725b637eec495f623bd801442e6d6e0616eb45fc5"
+size = 128042
+mtime_ms = 1793862818051
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:e843aec5-4713-402e-8285-cc49cce1aba9/f36a8922-bf5a-4cf0-84e5-bd2a47dc2a09/10d85501-167d-452a-a53c-cfaa1d216fc1"
+storage_version_token = "1793862879977113"
+content_type = "application/pdf"

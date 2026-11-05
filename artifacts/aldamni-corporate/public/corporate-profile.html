@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Auto Service App for General Trading — Company Profile</title>
+  <style>
+    @page { size: A4; margin: 12mm; }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: #19352e; font-family: Arial, "Noto Sans Arabic", sans-serif; }
+    .page { height: 273mm; position: relative; page-break-after: always; padding: 0 0 12mm; }
+    .page:last-child { page-break-after: auto; }
+    .topline { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #d8d5ca; padding-bottom: 5mm; }
+    .brand { display: flex; align-items: center; gap: 10px; font-size: 9pt; font-weight: bold; letter-spacing: .08em; }
+    .mark { width: 33px; height: 33px; display: grid; place-items: center; color: #d7a274; background: #19352e; font-size: 17pt; }
+    .year { color: #a76844; font-size: 9pt; letter-spacing: .14em; }
+    h1 { margin: 11mm 0 4mm; font-size: 25pt; line-height: 1.08; letter-spacing: -.04em; }
+    .arabic h1 { letter-spacing: 0; line-height: 1.45; }
+    .lead { max-width: 158mm; color: #53675e; font-size: 10pt; line-height: 1.5; }
+    .rule { width: 22mm; height: 2px; margin: 5mm 0; background: #bd8059; }
+    h2 { margin: 6mm 0 3mm; font-size: 12pt; }
+    .sectors { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; margin-top: 4mm; }
+    .sector { min-height: 30mm; padding: 3.5mm; border: 1px solid #ddd9ce; }
+    .sector b { display: block; margin-bottom: 1.5mm; color: #a76844; font-size: 9pt; }
+    .sector p { margin: 0; color: #53675e; font-size: 8pt; line-height: 1.45; }
+    .contacts { margin-top: 5mm; padding-top: 4mm; border-top: 1px solid #d8d5ca; display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
+    .contacts h3 { margin: 0 0 2mm; font-size: 10pt; }
+    .contacts p { margin: 1mm 0; color: #53675e; font-size: 8pt; line-height: 1.4; }
+    .footer { position: absolute; bottom: 0; inset-inline: 0; display: flex; justify-content: space-between; padding-top: 3mm; border-top: 1px solid #d8d5ca; color: #78847c; font-size: 8pt; }
+    .arabic { direction: rtl; text-align: right; }
+    .arabic .topline, .arabic .footer { direction: rtl; }
+    .arabic .contacts { direction: rtl; }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="topline"><div class="brand"><span class="mark">A</span><span>AUTO SERVICE APP<br>FOR GENERAL TRADING</span></div><span class="year">ESTABLISHED 2019</span></div>
+    <h1>Regional supply.<br>Practical connections.</h1>
+    <p class="lead">Auto Service App for General Trading (أوتو سيرفس اب للتجارة العامة) is a regional trading company established in 2019, operating between Kuwait and Syria across petroleum supply, automotive products, fine foods and hydroponic agriculture.</p>
+    <div class="rule"></div>
+    <h2>Our sectors</h2>
+    <div class="sectors">
+      <div class="sector"><b>Petroleum &amp; energy</b><p>Petroleum supply and related logistics, including supply to the Syrian Ministry of Petroleum.</p></div>
+      <div class="sector"><b>Auto service &amp; lubricants</b><p>Auto Service App spare parts and Auto-Oil 5000, 10000 and 15000 grades: 5W-30, 10W-40 and 20W-50, in 1L and 4L bottles.</p></div>
+      <div class="sector"><b>Fine food products</b><p>Shamco Wafrat El-Sham: olive oil, Spanish black and green sliced olives, feta and Akkawi/Syrian cheese with black seed and sesame, Kalamata and grilled olives.</p></div>
+      <div class="sector"><b>Hydroponic agriculture</b><p>Greenhouse growing in Syria, with local lettuce, tomatoes and cucumbers.</p></div>
+    </div>
+    <h2>Regional presence</h2>
+    <p class="lead">Our business hubs in Al-Aqaila, Kuwait and Rif Dimashq, Syria support regional sourcing, supply and product development.</p>
+    <div class="contacts">
+      <div><h3>Kuwait office</h3><p>Al-Aqaila, Taiba Mall Building, 7th Floor</p><p>WhatsApp: +965 55554199</p></div>
+      <div><h3>Syria office</h3><p>Rif Dimashq, Qura Al-Sham, Building 43</p><p>WhatsApp: +963 959811087</p></div>
+    </div>
+    <div class="footer"><span>Auto Service App for General Trading</span><span>anas@appautoservice.com</span></div>
+  </main>
+  <main class="page arabic" lang="ar" dir="rtl">
+    <div class="topline"><div class="brand"><span class="mark">A</span><span>أوتو سيرفس اب<br>للتجارة العامة</span></div><span class="year">تأسست عام ٢٠١٩</span></div>
+    <h1>إمداد إقليمي.<br>روابط عملية.</h1>
+    <p class="lead">أوتو سيرفس اب للتجارة العامة شركة تجارة إقليمية تأسست عام ٢٠١٩، وتعمل بين الكويت وسوريا في إمدادات النفط ومنتجات السيارات والأغذية الفاخرة والزراعة المائية.</p>
+    <div class="rule"></div>
+    <h2>قطاعاتنا</h2>
+    <div class="sectors">
+      <div class="sector"><b>النفط والطاقة</b><p>إمدادات النفط والخدمات اللوجستية المرتبطة بها، بما يشمل التوريد لوزارة النفط السورية.</p></div>
+      <div class="sector"><b>خدمات السيارات والزيوت</b><p>قطع غيار تطبيق أوتو سيرفس وزيوت Auto-Oil 5000 و10000 و15000 بدرجات 5W-30 و10W-40 و20W-50، بعبوات ١ و٤ لترات.</p></div>
+      <div class="sector"><b>المنتجات الغذائية الفاخرة</b><p>شامكو وفرات الشام: زيت زيتون، زيتون إسباني أسود وأخضر شرائح، فيتا وعكاوي وأجبان سورية بحبة البركة والسمسم، زيتون كلاماتا ومشوي.</p></div>
+      <div class="sector"><b>الزراعة المائية</b><p>زراعة داخل البيوت المحمية في سوريا لإنتاج الخس والطماطم والخيار محلياً.</p></div>
+    </div>
+    <h2>الحضور الإقليمي</h2>
+    <p class="lead">تدعم مراكز أعمالنا في العقيلة بالكويت وريف دمشق بسوريا عمليات التوريد والتجارة وتطوير المنتجات إقليمياً.</p>
+    <div class="contacts">
+      <div><h3>مكتب الكويت</h3><p>العقيلة، مبنى طيبة مول، الطابق السابع</p><p>واتساب: <bdi dir="ltr">+965 55554199</bdi></p></div>
+      <div><h3>مكتب سوريا</h3><p>ريف دمشق، قرى الشام، مبنى ٤٣</p><p>واتساب: <bdi dir="ltr">+963 959811087</bdi></p></div>
+    </div>
+    <div class="footer"><span>أوتو سيرفس اب للتجارة العامة</span><span dir="ltr">anas@appautoservice.com</span></div>
+  </main>
+</body>
+</html>

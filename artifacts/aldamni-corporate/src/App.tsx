@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type ChangeEvent, type DragEvent } from 'react';
-import { ArrowDown, ArrowUpRight, ChevronDown, ImagePlus, Menu, Trash2, X } from 'lucide-react';
+import { ArrowDown, ArrowDownToLine, ArrowUpRight, ChevronDown, ImagePlus, Menu, Trash2, X } from 'lucide-react';
 
 type Language = 'en' | 'ar';
 type AssetRecord = { slot: string; blob: Blob };
@@ -7,6 +7,12 @@ const asset = (name: string) => `${import.meta.env.BASE_URL}${name}`;
 const DB_NAME = 'auto-service-corporate-assets';
 const STORE_NAME = 'images';
 const ASSET_CHANGE_EVENT = 'auto-service-image-updated';
+const BRAND_ASSETS = {
+  logo: 'https://storage.googleapis.com/generative-ai-assets/watermarked_img_11949001160800985357.jpg',
+  lubricants: 'https://storage.googleapis.com/generative-ai-assets/watermarked_img_12343310226894577826.jpg',
+  food: 'https://storage.googleapis.com/generative-ai-assets/watermarked_img_6859796707920059445.jpg',
+  hydroponics: 'https://storage.googleapis.com/generative-ai-assets/watermarked_img_15559221312499759710.jpg',
+};
 
 function openAssetDb(): Promise<IDBDatabase> {
   return new Promise((resolve, reject) => {
@@ -48,7 +54,7 @@ async function removeAsset(slot: string): Promise<void> {
   });
 }
 
-function SavedAssetImage({ slot, initial, alt }: { slot: string; initial: string; alt: string }) {
+function SavedAssetImage({ slot, initial, fallback, alt }: { slot: string; initial: string; fallback: string; alt: string }) {
   const [source, setSource] = useState(initial);
 
   useEffect(() => {
@@ -77,12 +83,12 @@ function SavedAssetImage({ slot, initial, alt }: { slot: string; initial: string
     };
   }, [slot, initial]);
 
-  return <img src={source} alt={alt} />;
+  return <img src={source} alt={alt} onError={() => setSource(fallback)} />;
 }
 
 const copy = {
   en: {
-    nav: ['Our sectors', 'Company', 'Contact'],
+    nav: ['Home', 'Energy sector', 'Automotive & lubricants', 'Food products', 'Hydroponics', 'About us', 'Contact'],
     locationLine: 'KUWAIT  ·  SYRIA  ·  ESTABLISHED 2019',
     language: 'عربي',
     menu: 'Open navigation',
@@ -93,6 +99,8 @@ const copy = {
     heroTitle: <>Regional supply.<br /><em>Practical connections.</em></>,
     heroText: 'Supplying the Syrian Ministry of Petroleum and connecting automotive parts, lubricants, Syrian food products and hydroponic agriculture across Kuwait and Syria.',
     explore: 'Explore our sectors',
+    downloadProfile: 'Download company profile (PDF)',
+    contactWhatsApp: 'Contact us on WhatsApp',
     established: 'ESTABLISHED',
     sectorsEyebrow: 'A connected portfolio',
     sectorsTitle: 'Five sectors. One regional perspective.',
@@ -104,9 +112,16 @@ const copy = {
       { title: 'Hydroponic agriculture', sub: 'Controlled growing', image: 'auto-service-greenhouse.jpg', alt: 'Hydroponic growing rows inside a greenhouse' },
       { title: 'Petroleum tankers', sub: 'Petroleum supply', image: 'auto-service-petroleum.jpg', alt: 'Petroleum tanker and storage infrastructure at dusk' },
     ],
+    sectorCards: [
+      { id: 'energy', name: 'Petroleum & energy', description: 'Petroleum supply and logistics for the Syrian Ministry of Petroleum.' },
+      { id: 'automotive', name: 'Auto service & lubricants', description: 'The Auto Service App, spare parts, and Auto-Oil 5000, 10000 and 15000 in 5W-30, 10W-40 and 20W-50.' },
+      { id: 'food', name: 'Fine food products', description: 'Shamco Wafrat El-Sham olive oil, olives, feta, Akkawi and Syrian cheeses.' },
+      { id: 'hydroponics', name: 'Hydroponic agriculture', description: 'Modern greenhouse production for local lettuce, tomatoes and cucumbers in Syria.' },
+    ],
     imageAdd: 'Add image',
     imageReplace: 'Replace image',
     imageAdded: 'Saved on this device',
+    imageReady: 'Default image · choose to replace',
     imageHint: 'Drop an image here or choose a file',
     imageError: 'Please choose an image under 12 MB.',
     companyEyebrow: 'The company',
@@ -130,10 +145,11 @@ const copy = {
     logoAlt: 'Company logo',
     logoHint: 'Add your logo',
     logoSaved: 'Logo saved on this device',
+    logoReady: 'Logo placeholder',
     imagePrivacy: 'Images are saved only on this device',
   },
   ar: {
-    nav: ['قطاعاتنا', 'الشركة', 'تواصل معنا'],
+    nav: ['الرئيسية', 'قطاع الطاقة', 'السيارات والزيوت', 'المنتجات الغذائية', 'الزراعة المائية', 'من نحن', 'تواصل معنا'],
     locationLine: 'الكويت  ·  سوريا  ·  تأسست عام ٢٠١٩',
     language: 'EN',
     menu: 'فتح قائمة التنقل',
@@ -144,6 +160,8 @@ const copy = {
     heroTitle: <>إمداد إقليمي.<br /><em>روابط عملية.</em></>,
     heroText: 'نورد لوزارة النفط السورية ونربط بين قطع غيار السيارات والزيوت والمنتجات الغذائية السورية والزراعة المائية في الكويت وسوريا.',
     explore: 'اكتشف قطاعاتنا',
+    downloadProfile: 'تنزيل الملف التعريفي (PDF)',
+    contactWhatsApp: 'تواصل عبر واتساب',
     established: 'تأسست عام',
     sectorsEyebrow: 'محفظة مترابطة',
     sectorsTitle: 'خمسة قطاعات. ورؤية إقليمية واحدة.',
@@ -155,9 +173,16 @@ const copy = {
       { title: 'الزراعة المائية', sub: 'زراعة محكومة', image: 'auto-service-greenhouse.jpg', alt: 'صفوف زراعة مائية داخل بيت محمي' },
       { title: 'ناقلات النفط', sub: 'إمدادات نفطية', image: 'auto-service-petroleum.jpg', alt: 'ناقلة نفط وبنية تخزين عند الغروب' },
     ],
+    sectorCards: [
+      { id: 'energy', name: 'النفط والطاقة', description: 'إمدادات نفطية وخدمات لوجستية لوزارة النفط السورية.' },
+      { id: 'automotive', name: 'خدمات السيارات والزيوت', description: 'تطبيق أوتو سيرفس وقطع الغيار وزيوت Auto-Oil 5000 و10000 و15000 بدرجات 5W-30 و10W-40 و20W-50.' },
+      { id: 'food', name: 'المنتجات الغذائية الفاخرة', description: 'زيت زيتون وثمار زيتون وأجبان فيتا وعكاوي وأجبان سورية من شامكو وفرات الشام.' },
+      { id: 'hydroponics', name: 'الزراعة المائية', description: 'إنتاج حديث داخل البيوت المحمية للخس والطماطم والخيار في سوريا.' },
+    ],
     imageAdd: 'أضف صورة',
     imageReplace: 'استبدل الصورة',
     imageAdded: 'حُفظت على هذا الجهاز',
+    imageReady: 'الصورة الافتراضية · اختر للاستبدال',
     imageHint: 'أفلت صورة هنا أو اختر ملفاً',
     imageError: 'يرجى اختيار صورة يقل حجمها عن ١٢ ميغابايت.',
     companyEyebrow: 'الشركة',
@@ -181,6 +206,7 @@ const copy = {
     logoAlt: 'شعار الشركة',
     logoHint: 'أضف شعارك',
     logoSaved: 'حُفظ الشعار على هذا الجهاز',
+    logoReady: 'مساحة مخصصة للشعار',
     imagePrivacy: 'تُحفظ الصور على هذا الجهاز فقط',
   },
 } as const;
@@ -188,19 +214,21 @@ const copy = {
 type ImageControlProps = {
   slot: string;
   initial?: string;
+  fallback?: string;
   alt: string;
   label: string;
   addText: string;
   replaceText: string;
   removeText: string;
   savedText: string;
+  readyText: string;
   hintText: string;
   errorText: string;
   className?: string;
   compact?: boolean;
 };
 
-function ImageControl({ slot, initial, alt, label, addText, replaceText, removeText, savedText, hintText, errorText, className = '', compact = false }: ImageControlProps) {
+function ImageControl({ slot, initial, fallback, alt, label, addText, replaceText, removeText, savedText, readyText, hintText, errorText, className = '', compact = false }: ImageControlProps) {
   const [source, setSource] = useState(initial ?? '');
   const [hasSaved, setHasSaved] = useState(false);
   const [error, setError] = useState('');
@@ -250,7 +278,7 @@ function ImageControl({ slot, initial, alt, label, addText, replaceText, removeT
       window.dispatchEvent(new CustomEvent(ASSET_CHANGE_EVENT, { detail: { slot } }));
       if (objectUrl.current) URL.revokeObjectURL(objectUrl.current);
       objectUrl.current = '';
-      setSource(initial ?? '');
+       setSource(fallback ?? initial ?? '');
       setHasSaved(false);
       setError('');
     } catch {
@@ -260,9 +288,9 @@ function ImageControl({ slot, initial, alt, label, addText, replaceText, removeT
 
   return (
     <div className={`image-control ${className}${source ? ' image-control-filled' : ''}${compact ? ' image-control-compact' : ''}`} onDragOver={(event) => event.preventDefault()} onDrop={onDrop}>
-      {source && <img className="image-control-preview" src={source} alt={alt} />}
+      {source && <img className="image-control-preview" src={source} alt={alt} onError={() => { if (fallback && source !== fallback) setSource(fallback); }} />}
       <div className="image-control-tools">
-        <span className="image-control-label">{source ? savedText : hintText}</span>
+        <span className="image-control-label">{hasSaved ? savedText : source ? readyText : hintText}</span>
         {error && <span className="image-control-error" role="status">{error}</span>}
         <input ref={inputRef} type="file" accept="image/*" aria-label={`${source ? replaceText : addText}: ${label}`} hidden onChange={onPick} />
         <div className="image-control-actions">
@@ -281,15 +309,24 @@ function App() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [trackPaused, setTrackPaused] = useState(false);
   const t = copy[language];
-  const navIds = ['sectors', 'company', 'contact'];
+  const navIds = ['top', 'energy', 'automotive', 'food', 'hydroponics', 'company', 'contact'];
+  const categoryInitial = (index: number, image: string) => {
+    if (index === 0) return BRAND_ASSETS.lubricants;
+    if (index === 1) return BRAND_ASSETS.food;
+    if (index === 3) return BRAND_ASSETS.hydroponics;
+    return asset(image);
+  };
   const logoControl = {
     slot: 'company-logo',
+    initial: BRAND_ASSETS.logo,
+    fallback: asset('auto-service-logo-placeholder.svg'),
     alt: t.logoAlt,
     label: t.footerNote,
     addText: t.editLogo,
     replaceText: t.replaceLogo,
     removeText: t.remove,
     savedText: t.logoSaved,
+    readyText: t.logoReady,
     hintText: t.logoHint,
     errorText: t.imageError,
     compact: true,
@@ -316,13 +353,15 @@ function App() {
             <div className="showcase-image">
               <ImageControl
                 slot={`showcase-${index}`}
-                initial={asset(item.image)}
+                initial={categoryInitial(index, item.image)}
+                fallback={asset(item.image)}
                 alt={item.alt}
                 label={item.title}
                 addText={t.imageAdd}
                 replaceText={t.imageReplace}
                 removeText={t.remove}
                 savedText={t.imageAdded}
+                readyText={t.imageReady}
                 hintText={t.imageHint}
                 errorText={t.imageError}
               />
@@ -333,7 +372,7 @@ function App() {
         ))}
         {t.categories.map((item, index) => (
           <article className={`showcase-card card-${index + 1} showcase-duplicate`} key={`duplicate-${item.title}`} aria-hidden="true">
-            <div className="showcase-image"><SavedAssetImage slot={`showcase-${index}`} initial={asset(item.image)} alt="" /><span className="card-index">0{index + 1} / 05</span></div>
+            <div className="showcase-image"><SavedAssetImage slot={`showcase-${index}`} initial={categoryInitial(index, item.image)} fallback={asset(item.image)} alt="" /><span className="card-index">0{index + 1} / 05</span></div>
             <div className="showcase-card-copy"><span>{item.sub}</span><h3>{item.title}</h3></div>
           </article>
         ))}
@@ -372,7 +411,15 @@ function App() {
           <div className="hero-eyebrow"><span className="eyebrow-line" />{t.heroEyebrow}</div>
           <h1>{t.heroTitle}</h1>
           <p>{t.heroText}</p>
-          <button type="button" className="hero-cta" onClick={() => go('sectors')}>{t.explore}<ArrowDown size={15} /></button>
+          <div className="hero-actions">
+            <a className="hero-cta" href={`${import.meta.env.BASE_URL}corporate-profile.pdf`} download data-testid="link-company-profile">
+              {t.downloadProfile}<ArrowDownToLine size={15} />
+            </a>
+            <a className="hero-cta hero-cta-secondary" href={whatsapp('96555554199')} target="_blank" rel="noreferrer" data-testid="link-hero-whatsapp">
+              {t.contactWhatsApp}<ArrowUpRight size={15} />
+            </a>
+          </div>
+          <button type="button" className="hero-explore" onClick={() => go('sectors')}>{t.explore}<ArrowDown size={15} /></button>
           <div className="hero-bottom"><span>{language === 'en' ? 'KUWAIT / SYRIA' : 'الكويت / سوريا'}</span><span className="hero-est"><b>2019</b> {t.established}</span></div>
         </div>
         <span className="hero-coordinate">29°22' N&nbsp; 47°59' E</span>
@@ -385,6 +432,27 @@ function App() {
         </div>
         {showcase}
         <div className="wrap showcase-foot"><span>{language === 'en' ? 'SUPPLY · MOBILITY · PRODUCTION' : 'الإمداد · الحركة · الإنتاج'}</span><span>{language === 'en' ? 'Drag and drop images to personalize the cards' : 'أفلت الصور لتخصيص البطاقات'} · {t.imagePrivacy}</span></div>
+      </section>
+
+      <section className="sector-directory" aria-labelledby="sector-directory-title">
+        <div className="wrap">
+          <div className="sector-directory-heading">
+            <div className="section-kicker">{t.sectorsEyebrow}</div>
+            <h2 id="sector-directory-title">{language === 'en' ? 'Trading across essential sectors.' : 'تجارة في قطاعات أساسية.'}</h2>
+          </div>
+          <div className="sector-directory-grid">
+            {t.sectorCards.map((sector, index) => (
+              <article className={`sector-detail sector-detail-${index + 1}`} id={sector.id} key={sector.id}>
+                <span className="sector-number">0{index + 1}</span>
+                <h3>{sector.name}</h3>
+                <p>{sector.description}</p>
+                <button type="button" onClick={() => go('contact')} data-testid={`button-sector-contact-${sector.id}`}>
+                  {language === 'en' ? 'Business enquiries' : 'استفسارات الأعمال'} <ArrowUpRight size={14} />
+                </button>
+              </article>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section className="company-section" id="company">
