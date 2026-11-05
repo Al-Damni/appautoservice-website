@@ -7,8 +7,10 @@ import hydroponicGreenhouseImage from '@assets/Gemini_Generated_Image_oylb7ioylb
 
 type Language = 'en' | 'ar';
 const asset = (name: string) => `${import.meta.env.BASE_URL}${name}`;
+const MASTER_CORPORATE_LOGO_URL = 'https://storage.googleapis.com/generative-ai-assets/watermarked_img_17541746080390695551.jpg';
+const UPLOADED_CORPORATE_LOGO = companyLogoImage;
 const BRAND_ASSETS = {
-  logo: companyLogoImage,
+  logo: MASTER_CORPORATE_LOGO_URL,
   lubricants: autoOilImage,
   food: oliveOilAndCheeseImage,
   hydroponics: hydroponicGreenhouseImage,
@@ -153,8 +155,23 @@ function InquiryMenu({
 }) {
   const t = copy[language];
   return (
-    <details className={`inquiry-menu ${className}`}>
-      <summary className={summaryClassName} data-testid={`button-${testId}`}>
+    <details
+      className={`inquiry-menu ${className}`}
+      onMouseEnter={(event) => {
+        if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) event.currentTarget.open = true;
+      }}
+      onMouseLeave={(event) => {
+        if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) event.currentTarget.open = false;
+      }}
+    >
+      <summary
+        className={summaryClassName}
+        data-testid={`button-${testId}`}
+        onClick={(event) => {
+          const menu = event.currentTarget.closest('details') as HTMLDetailsElement | null;
+          if (window.matchMedia('(hover: hover) and (pointer: fine)').matches && menu?.open) event.preventDefault();
+        }}
+      >
         <span>{label}</span><ChevronDown size={14} aria-hidden="true" />
       </summary>
       <div className="inquiry-options">
@@ -191,7 +208,14 @@ function App() {
       aria-hidden={duplicate || undefined}
     >
       <div className="showcase-image brand-showcase-image">
-        <img src={BRAND_ASSETS.logo} alt={duplicate ? '' : t.logoAlt} />
+        <img
+          src={BRAND_ASSETS.logo}
+          alt={duplicate ? '' : t.logoAlt}
+          onError={(event) => {
+            event.currentTarget.onerror = null;
+            event.currentTarget.src = UPLOADED_CORPORATE_LOGO;
+          }}
+        />
         <span className="card-index">{language === 'en' ? 'BRAND' : 'العلامة'}</span>
       </div>
       <div className="showcase-card-copy">
