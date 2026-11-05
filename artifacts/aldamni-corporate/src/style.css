@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Libre+Franklin:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&family=Rethink+Sans:wght@400;500;600;700&family=Source+Serif+4:wght@400;500;600;700&family=Zilla+Slab:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+:root{font-family:"Libre Franklin","Noto Sans Arabic",sans-serif;color:#272723;background:#f3f0e7;font-synthesis:none;text-rendering:optimizeLegibility;font-optical-sizing:auto;--ink:#252521;--paper:#f3f0e7;--soft:#e9e4d8;--indigo:#2b2772;--brass:#a98142;--line:#c9c1af;--olive:#687148;--terracotta:#a85c43}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{margin:0;min-width:320px;background:var(--paper);color:var(--ink)}
+button,a{font:inherit}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:3px solid var(--brass);outline-offset:4px}
+button{cursor:pointer}
+img{display:block;max-width:100%}
+.is-packaging{object-fit:contain!important;background-color:#eee9dc}
+.site{min-height:100dvh;overflow:hidden}
+.is-rtl{direction:rtl;font-family:"Noto Sans Arabic",sans-serif}
+.is-ltr{direction:ltr}
+.preview-switch{height:34px;padding:0 max(22px,calc((100vw - 1240px)/2));background:var(--indigo);color:#f6f2e7;display:flex;align-items:center;gap:16px;font:600 10px "Libre Franklin",sans-serif;letter-spacing:.12em}
+.is-rtl .preview-switch{font-family:"IBM Plex Sans Arabic",sans-serif;letter-spacing:0}
+.preview-switch span{opacity:.72;margin-inline-end:5px}
+.preview-switch a{height:22px;min-width:24px;text-align:center;padding:4px 5px;border:1px solid #aaa7d1;color:#f6f2e7}
+.preview-switch a[aria-current=page]{background:#d4ad69;color:#24231f;border-color:#d4ad69}
+.topbar{height:76px;padding:0 max(22px,calc((100vw - 1240px)/2));display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);gap:24px}
+.company-name{font-size:15px;font-weight:700;color:var(--indigo);max-width:54%;line-height:1.35}
+.topbar nav{display:flex;align-items:center;gap:clamp(18px,3vw,44px);font-size:13px;font-weight:600}
+.topbar nav>a{padding:8px 0;border-bottom:1px solid transparent}
+.topbar nav>a:hover{border-color:var(--brass)}
+.language-toggle{border:1px solid var(--indigo);color:var(--indigo);background:transparent;padding:8px 13px;min-width:49px}
+.hero{max-width:1240px;margin:auto}
+.hero-a{padding:66px 0 62px;display:grid;grid-template-columns:.92fr 1.08fr;gap:70px;align-items:center;min-height:535px}
+.hero-copy{padding-inline-start:5px}
+.edition,.catalog-line,.product-kicker{font:700 10px "Libre Franklin",sans-serif;letter-spacing:.15em;color:var(--brass);margin:0 0 23px}
+.is-rtl .edition,.is-rtl .catalog-line,.is-rtl .product-kicker{font-family:"IBM Plex Sans Arabic",sans-serif;letter-spacing:0;font-size:12px}
+.hero h1{font:500 clamp(44px,5.6vw,76px)/1.03 "Source Serif 4",serif;color:var(--indigo);letter-spacing:-.035em;margin:0 0 24px;max-width:560px}
+.is-rtl .hero h1{font:600 clamp(40px,5vw,68px)/1.3 "Noto Naskh Arabic",serif;letter-spacing:0}
+.lead{font-size:17px;line-height:1.8;max-width:510px;color:#4b4a43;margin:0 0 28px}
+.is-rtl .lead,.is-rtl .hero-b-copy>p,.is-rtl .hero-c-copy>p{font-size:19px;line-height:1.9}
+.action-link,.row-link,.path-cta,.contact-office>a,.email-contact,.text-link{display:inline-flex;align-items:center;gap:12px;color:var(--indigo);font-size:13px;font-weight:700}
+.action-link{background:var(--indigo);color:#fff;padding:15px 19px}
+.action-link svg,.row-link svg,.path-cta svg,.contact-office>a svg{transition:transform .2s ease}
+.action-link:hover svg,.row-link:hover svg,.path-cta:hover svg,.contact-office>a:hover svg{transform:translateX(3px)}
+.is-rtl .action-link:hover svg,.is-rtl .row-link:hover svg,.is-rtl .path-cta:hover svg,.is-rtl .contact-office>a:hover svg{transform:translateX(-3px)}
+.hero-photo{height:400px;position:relative;padding:0 0 34px 36px}
+.hero-photo>img{width:100%;height:100%;object-fit:cover}
+.logo-plaque{position:absolute;bottom:0;left:0;width:148px;height:137px;padding:9px;background:#f3f0e7;border:1px solid var(--line)}
+.logo-plaque img{width:100%;height:100%;object-fit:contain}
+.is-rtl .hero-photo{padding:0 36px 34px 0}
+.is-rtl .logo-plaque{left:auto;right:0}
+.company-strip{border-block:1px solid var(--line);display:flex;justify-content:center;gap:clamp(38px,8vw,130px);padding:23px 24px;background:#ebe6d9}
+.company-strip div{display:flex;flex-direction:column;gap:7px}
+.company-strip span{font:700 9px "Libre Franklin",sans-serif;color:#746a55;letter-spacing:.14em}
+.is-rtl .company-strip span{font-family:"IBM Plex Sans Arabic",sans-serif;letter-spacing:0}
+.company-strip strong{font-size:14px;color:var(--indigo)}
+.dossier-section,.supply-paths,.catalog,.portfolio{max-width:1240px;margin:0 auto;padding:85px 0}
+.section-head,.catalog-head,.paths-heading{display:flex;align-items:end;justify-content:space-between;gap:24px;border-bottom:1px solid var(--ink);padding-bottom:18px;margin-bottom:17px}
+.section-head h2,.catalog-head h2,.paths-heading h2,.network-offices h2,.portfolio>h2,.contact-heading h2{font:500 clamp(30px,4vw,45px)/1.15 "Source Serif 4",serif;color:var(--indigo);margin:0}
+.is-rtl .section-head h2,.is-rtl .catalog-head h2,.is-rtl .paths-heading h2,.is-rtl .network-offices h2,.is-rtl .portfolio>h2,.is-rtl .contact-heading h2{font:600 clamp(28px,4vw,42px)/1.4 "Noto Naskh Arabic",serif}
+.section-head p,.catalog-head p,.paths-heading p{font-size:13px;color:#5a574f;margin:0}
+.ledger-row{display:grid;grid-template-columns:160px minmax(0,1fr) auto;gap:24px;align-items:center;padding:19px 0;border-bottom:1px solid var(--line)}
+.row-photo{height:102px;background:#ded8ca}
+.row-photo img{width:100%;height:100%;object-fit:cover}
+.row-content h3{font:600 21px "Source Serif 4",serif;color:var(--indigo);margin:0 0 5px}
+.is-rtl .row-content h3{font:600 22px "Noto Naskh Arabic",serif}
+.row-content p{margin:0 0 6px;font-size:13px;line-height:1.55}
+.product-list{display:block;font-size:12px;line-height:1.6;color:#575348}
+.row-link{white-space:nowrap;padding:9px 0}
+.contact-section{padding:76px max(22px,calc((100vw - 1240px)/2)) 72px;background:#e8e3d7}
+.contact-heading{max-width:680px;margin:0 auto 33px;text-align:center}
+.contact-heading p{font-size:14px;line-height:1.7}
+.selected-enquiry{max-width:900px;margin:-12px auto 22px;padding:12px 16px;background:#f5f1e8;color:var(--indigo);font-size:14px;font-weight:700;text-align:center}
+.contact-offices{display:grid;grid-template-columns:1fr 1fr;max-width:900px;margin:auto;border-block:1px solid var(--line)}
+.contact-office{padding:25px 30px 29px}
+.contact-office+ .contact-office{border-inline-start:1px solid var(--line)}
+.office-country{font:700 9px "Libre Franklin",sans-serif;letter-spacing:.13em;color:var(--brass)}
+.is-rtl .office-country{font-family:"IBM Plex Sans Arabic",sans-serif;letter-spacing:0}
+.contact-office h3{font:500 29px "Source Serif 4",serif;color:var(--indigo);margin:10px 0}
+.is-rtl .contact-office h3{font:600 29px "Noto Naskh Arabic",serif}
+.contact-office p{font-size:14px;line-height:1.8;margin:0 0 18px}
+.email-contact{justify-content:center;margin:27px auto 0;width:max-content;border-bottom:1px solid var(--brass);padding-bottom:7px}
+.footer{min-height:70px;padding:20px max(22px,calc((100vw - 1240px)/2));display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:11px;color:#57544e}
+.footer a{display:flex;align-items:center;gap:9px;color:var(--indigo);font-weight:600}
+/* B · operational sign-system */
+.direction-b{font-family:"Albert Sans","IBM Plex Sans Arabic",sans-serif}
+.direction-b.is-rtl{font-family:"IBM Plex Sans Arabic",sans-serif}
+.hero-b{max-width:none;min-height:500px;display:grid;grid-template-columns:1.05fr .95fr;background:var(--indigo);color:#f8f4e9}
+.hero-b-copy{padding:72px max(32px,calc((100vw - 1240px)/2));padding-inline-end:48px;align-self:center}
+.region-stamp{display:inline-block;color:#edc477;border:1px solid #988eaf;padding:10px 13px;font-size:10px;font-weight:700;letter-spacing:.11em;margin-bottom:25px}
+.is-rtl .region-stamp{font-size:13px;letter-spacing:0}
+.hero-b h1{font:700 clamp(44px,6vw,78px)/1.08 "Albert Sans",sans-serif;color:#fff;max-width:580px;margin:0 0 20px;letter-spacing:-.045em}
+.is-rtl .hero-b h1{font:700 clamp(42px,5.5vw,68px)/1.4 "IBM Plex Sans Arabic",sans-serif;letter-spacing:0}
+.hero-b-copy>p{font-size:16px;line-height:1.8;max-width:530px;margin:0 0 24px;color:#e9e5dd}
+.hero-b .action-link{background:#d2a34d;color:#292719}
+.hero-b-image{min-height:500px;position:relative}
+.hero-b-image>img:first-child{width:100%;height:100%;position:absolute;inset:0;object-fit:cover}
+.b-logo{position:absolute;bottom:24px;inset-inline-end:24px;width:100px;height:90px;object-fit:contain;background:#f7f5ef;padding:6px}
+.network-offices{max-width:1240px;margin:auto;padding:70px 0 55px}
+.network-offices h2{margin-bottom:24px}
+.office-sign{display:grid;grid-template-columns:30px 1fr auto;gap:17px;align-items:center;background:#e9e4d8;border-top:1px solid #b9ae99;padding:20px 21px}
+.office-sign:last-child{border-bottom:1px solid #b9ae99}
+.office-sign>svg{color:var(--brass)}
+.office-sign div{display:flex;align-items:center;gap:22px}
+.office-sign div span{font-weight:700;font-size:18px;color:var(--indigo);min-width:80px}
+.office-sign div strong{font-size:14px;font-weight:500}
+.office-sign>a{display:inline-flex;align-items:center;gap:9px;background:#d4aa5b;padding:11px 14px;font-size:12px;font-weight:700}
+.supply-paths{padding-top:62px}
+.paths-heading{align-items:end}
+.path{display:grid;grid-template-columns:.9fr 1.2fr 200px auto;align-items:center;gap:22px;padding:18px 0;border-bottom:1px solid var(--line)}
+.path-title{display:flex;align-items:center;gap:15px}
+.path-title h3{font:700 20px "Albert Sans",sans-serif;color:var(--indigo);margin:0}
+.is-rtl .path-title h3{font:700 19px "IBM Plex Sans Arabic",sans-serif}
+.path-description p{font-size:13px;margin:0 0 5px;line-height:1.5}
+.path-description small{font-size:11px;color:#5a554b;line-height:1.5;display:block}
+.path-image{height:90px}
+.path-image img{width:100%;height:100%;object-fit:cover}
+.path-cta{background:#d5aa5b;color:#27251e;padding:12px;font-size:11px;justify-content:center;white-space:nowrap}
+/* C · tactile editorial catalogue */
+.direction-c{font-family:"Rethink Sans","Noto Kufi Arabic",sans-serif;background:#f6f2e9}
+.direction-c.is-rtl{font-family:"Noto Kufi Arabic",sans-serif}
+.hero-c{display:grid;grid-template-columns:1.08fr .92fr;gap:82px;align-items:center;padding:54px 0 76px;min-height:510px}
+.hero-c-visual{height:390px;position:relative;padding:0 34px 26px 0}
+.hero-c-visual>img{width:100%;height:100%;object-fit:contain;background:#ebe6da}
+.logo-seal{position:absolute;right:0;bottom:0;width:112px;height:104px;background:#f6f2e9;border:1px solid var(--line);padding:6px}
+.logo-seal img{width:100%;height:100%;object-fit:contain}
+.is-rtl .hero-c-visual{padding:0 0 26px 34px}
+.is-rtl .logo-seal{right:auto;left:0}
+.hero-c h1{font:600 clamp(42px,5.3vw,70px)/1.05 "Zilla Slab",serif;letter-spacing:-.03em;color:var(--indigo);margin:0 0 19px}
+.is-rtl .hero-c h1{font:600 clamp(38px,5vw,62px)/1.5 "Noto Kufi Arabic",sans-serif;letter-spacing:0}
+.hero-c-copy h2{font:600 20px/1.4 "Rethink Sans",sans-serif;margin:0 0 15px;color:#554b39}
+.is-rtl .hero-c-copy h2{font:600 20px/1.7 "Noto Kufi Arabic",sans-serif}
+.hero-c-copy>p{font-size:15px;line-height:1.8;color:#514d43;max-width:480px}
+.scroll-link{display:inline-flex;align-items:center;gap:10px;margin-top:15px;color:var(--indigo);font-size:13px;font-weight:700;border-bottom:1px solid var(--terracotta);padding-bottom:8px}
+.product-intro{background:#eae5d9;padding:31px max(22px,calc((100vw - 1240px)/2));display:flex;align-items:center;justify-content:space-between;gap:35px}
+.product-intro h2{font:600 22px "Zilla Slab",serif;color:var(--indigo);margin:0 0 7px}
+.is-rtl .product-intro h2{font:600 21px "Noto Kufi Arabic",sans-serif}
+.product-intro p{margin:0;max-width:720px;font-size:13px;line-height:1.7}
+.product-intro>span{white-space:nowrap;color:#625b4b;font-size:12px}
+.catalog{padding-top:76px}
+.feature-product{display:grid;grid-template-columns:1.1fr .9fr;min-height:370px;background:#eeeadf;margin-bottom:32px}
+.feature-image{min-height:370px}
+.feature-image img{width:100%;height:100%;object-fit:contain;background:#f4f0e5}
+.feature-copy{padding:35px 38px;align-self:center}
+.feature-copy .product-kicker,.oil-copy .product-kicker{color:var(--terracotta)}
+.feature-copy h3,.oil-copy h3{font:600 clamp(28px,3.1vw,40px)/1.1 "Zilla Slab",serif;color:var(--indigo);margin:0 0 12px}
+.is-rtl .feature-copy h3,.is-rtl .oil-copy h3{font:600 30px/1.5 "Noto Kufi Arabic",sans-serif}
+.feature-copy p,.oil-copy p{font-size:14px;line-height:1.7}
+.feature-copy ul{padding-inline-start:19px;font-size:13px;line-height:1.9}
+.feature-copy small,.oil-copy small{display:block;color:#5f584a;line-height:1.7;font-size:11px;margin:8px 0 17px}
+.feature-copy .action-link,.oil-copy .action-link{width:max-content}
+.oil-product{display:grid;grid-template-columns:.82fr 1.18fr;background:#ebe7d9;margin-bottom:24px}
+.oil-copy{padding:35px;align-self:center}
+.oil-lines{display:flex;gap:8px;margin:21px 0}
+.oil-lines b{border:1px solid #a5a08f;padding:10px 12px;color:var(--indigo);font:600 15px "Zilla Slab",serif}
+.oil-image{height:310px}
+.oil-image img{height:100%;width:100%;object-fit:contain;background:#e7e2d6}
+.portfolio{padding-top:46px}
+.portfolio>h2{margin-bottom:28px}
+.portfolio-row{display:grid;grid-template-columns:280px 1fr;gap:36px;align-items:center;padding:22px 0;border-top:1px solid var(--line)}
+.portfolio-photo{height:180px;background:#e6e0d3}
+.portfolio-photo img{width:100%;height:100%;object-fit:cover}
+.portfolio-row h3{font:600 24px "Zilla Slab",serif;color:var(--indigo);margin:0 0 8px}
+.is-rtl .portfolio-row h3{font:600 23px "Noto Kufi Arabic",sans-serif}
+.portfolio-row p{font-size:13px;line-height:1.7;margin:0 0 8px}
+.text-link{padding:7px 0;border-bottom:1px solid var(--terracotta)}
+@media(max-width:1300px){.hero-a,.dossier-section,.network-offices,.supply-paths,.catalog,.portfolio,.hero-c{margin-inline:32px}}
+@media(max-width:900px){.hero-a{gap:36px;min-height:470px}.hero-photo{height:330px}.ledger-row{grid-template-columns:125px minmax(0,1fr);gap:16px}.ledger-row .row-link{grid-column:2}.path{grid-template-columns:1fr 1.2fr 150px}.path-cta{grid-column:2 / -1;justify-self:start}.hero-b-copy{padding:50px 32px}.hero-b-image{min-height:430px}.hero-b{min-height:430px}.hero-c{gap:38px}.product-intro{align-items:flex-start;flex-direction:column;gap:12px}}
+@media(max-width:650px){.preview-switch{padding-inline:18px;height:32px}.topbar{height:auto;min-height:69px;padding:12px 18px;align-items:flex-start;gap:14px}.company-name{font-size:12px;max-width:48%;align-self:center}.topbar nav{gap:13px;font-size:11px;flex-wrap:wrap;justify-content:flex-end}.language-toggle{padding:6px 9px;min-width:42px}.hero-a{margin:0;padding:40px 20px 35px;display:flex;flex-direction:column;align-items:stretch;gap:28px}.hero-copy{order:0}.hero h1{font-size:48px}.is-rtl .hero h1{font-size:43px;line-height:1.35}.lead{font-size:15px}.hero-photo{height:250px;padding:0 0 22px 24px}.is-rtl .hero-photo{padding:0 24px 22px 0}.logo-plaque{width:100px;height:94px}.company-strip{justify-content:space-between;gap:10px;padding:19px 17px}.company-strip strong{font-size:11px}.company-strip span{font-size:8px}.dossier-section,.supply-paths,.catalog,.portfolio,.network-offices{margin:0;padding:54px 20px}.section-head,.catalog-head,.paths-heading{align-items:flex-start;flex-direction:column;gap:7px}.section-head h2,.catalog-head h2,.paths-heading h2,.network-offices h2,.portfolio>h2,.contact-heading h2{font-size:34px}.ledger-row{grid-template-columns:1fr;gap:11px;padding:16px 0}.row-photo,.row-content,.ledger-row .row-link{grid-column:1}.row-photo{height:165px}.row-content h3{font-size:21px}.row-content p{font-size:13px}.ledger-row .row-link{justify-self:start}.contact-section{padding:52px 20px}.contact-offices{grid-template-columns:1fr}.contact-office{padding:22px 10px}.contact-office+ .contact-office{border-inline-start:0;border-top:1px solid var(--line)}.contact-heading{text-align:start}.email-contact{margin-inline:0}.footer{padding:20px;flex-wrap:wrap;justify-content:flex-start}.footer span:last-child{width:100%}.hero-b{display:flex;flex-direction:column}.hero-b-copy{padding:45px 22px 38px}.hero-b h1{font-size:47px}.is-rtl .hero-b h1{font-size:42px}.hero-b-image{min-height:270px;height:270px}.network-offices{padding-top:47px}.office-sign{grid-template-columns:25px 1fr;gap:12px;padding:16px 12px}.office-sign div{display:block}.office-sign div span{display:block;margin-bottom:6px}.office-sign>a{grid-column:2;width:max-content}.path{grid-template-columns:1fr 1fr;gap:13px}.path-title{grid-column:1/-1}.path-description{grid-column:1/-1}.path-image{grid-column:1;height:100px}.path-cta{grid-column:2;align-self:center;justify-self:stretch;white-space:normal}.hero-c{margin:0;padding:35px 20px 43px;display:flex;flex-direction:column;align-items:stretch;gap:27px}.hero-c-visual{height:260px;padding:0 22px 20px 0}.is-rtl .hero-c-visual{padding:0 0 20px 22px}.logo-seal{width:86px;height:80px}.hero-c h1{font-size:45px}.is-rtl .hero-c h1{font-size:39px}.hero-c-copy h2{font-size:18px}.hero-c-copy>p{font-size:14px}.product-intro{padding:24px 20px}.product-intro>span{white-space:normal;font-size:11px}.catalog{padding-top:52px}.feature-product{grid-template-columns:1fr}.feature-image{min-height:220px;height:220px}.feature-copy{padding:26px 20px}.feature-copy h3,.oil-copy h3{font-size:32px}.feature-copy ul{font-size:12px}.oil-product{grid-template-columns:1fr}.oil-copy{padding:27px 20px}.oil-image{height:230px;grid-row:1}.portfolio-row{grid-template-columns:1fr;gap:18px}.portfolio-photo{height:195px}.portfolio-row>div:last-child{padding-bottom:8px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}}

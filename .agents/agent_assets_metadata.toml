@@ -182,3 +182,31 @@ mtime_ms = 1793904504194
 storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:e843aec5-4713-402e-8285-cc49cce1aba9/dba7a177-a503-475b-b229-3c9333a92529/773c9ff1-50a7-40cf-8557-f66dda0b091f"
 storage_version_token = "1793904635167752"
 content_type = "image/jpeg"
+
+[[outputs]]
+id = "pbkz8iNwuKZCIGJKOSBvm"
+uri = "file://generated-artifacts/aldamni-preview/desktop-directions.jpg"
+type = "image"
+title = "Home directions — desktop 1440px"
+description = "Playwright CLI screenshots of directions A, B, and C side by side. These show the first viewport; the live preview routes contain the complete Home pages."
+logical_id = "0c84343d-dac9-4dd0-b585-828468b867b7"
+content_hash = "sha256:35202abbab7b51cf0d655a339b5ef5bb9573d4b988c3ea244296e71517b688ce"
+size = 205846
+mtime_ms = 1793911288307
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:e843aec5-4713-402e-8285-cc49cce1aba9/0c84343d-dac9-4dd0-b585-828468b867b7/2ec89bfc-a0fb-4b4e-b988-cda363135074"
+storage_version_token = "1793911352396987"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "wJ7z0rJhHfcct5D05jlgp"
+uri = "file://generated-artifacts/aldamni-preview/mobile-directions.jpg"
+type = "image"
+title = "Home directions — mobile 390px"
+description = "Playwright CLI screenshots of directions A, B, and C side by side at 390px. These show the first viewport; the live preview routes contain the complete Home pages."
+logical_id = "07a6e2ee-bcde-408e-8fca-a909ef8bfa34"
+content_hash = "sha256:2f1a2f536c019a0e0acdd810f81facbb3cc4769bb96d21e2795cd6712667b039"
+size = 249470
+mtime_ms = 1793911289007
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:e843aec5-4713-402e-8285-cc49cce1aba9/07a6e2ee-bcde-408e-8fca-a909ef8bfa34/e4d3cd66-9af9-4503-9319-aa866dc285cc"
+storage_version_token = "1793911353646803"
+content_type = "image/jpeg"
