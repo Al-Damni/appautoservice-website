@@ -73,7 +73,7 @@ Only items explicitly named below are candidates for the first draft of public c
 
 ### Email
 
-- **Business email:** anas@appautoservice.com
+- **Business email:** fahad.al-dousari@appautoservice.com
 
 ## Brand and visual direction
 

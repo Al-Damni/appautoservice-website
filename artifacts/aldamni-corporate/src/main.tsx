@@ -5,6 +5,7 @@ import { directionCopy, site, type Direction, type Locale } from './data/site';
 import './style.css';
 
 const BASE = import.meta.env.BASE_URL;
+const baseRoot = BASE.endsWith('/') ? BASE : `${BASE}/`;
 
 function enquiryMessage(locale: Locale, sector?: string) {
   if (locale === 'ar') {
@@ -25,18 +26,21 @@ function emailUrl(locale: Locale, sector?: string) {
 }
 
 function App() {
-  const [locale, setLocale] = useState<Locale>('ar');
-  const [selectedSector, setSelectedSector] = useState<string | undefined>();
   const path = window.location.pathname;
-  const direction: Direction = path.endsWith('/b') ? 'b' : path.endsWith('/c') ? 'c' : 'a';
+  const isPreview = path.startsWith(`${baseRoot}preview/`);
+  const [locale, setLocale] = useState<Locale>(isPreview ? 'ar' : 'en');
+  const [selectedSector, setSelectedSector] = useState<string | undefined>();
+  const direction: Direction = path.endsWith('/a') ? 'a' : path.endsWith('/b') ? 'b' : 'c';
   const rtl = locale === 'ar';
   const tx = (value: { ar: string; en: string }) => value[locale];
 
   useEffect(() => {
     document.documentElement.lang = locale;
     document.documentElement.dir = rtl ? 'rtl' : 'ltr';
-    document.title = `${site.company[locale]} — ${locale === 'ar' ? 'معاينة' : 'Home preview'} ${direction.toUpperCase()}`;
-  }, [locale, rtl, direction]);
+    document.title = isPreview
+      ? `${site.company[locale]} — ${locale === 'ar' ? 'معاينة' : 'Home preview'} ${direction.toUpperCase()}`
+      : `${site.company[locale]} — ${locale === 'ar' ? 'الرئيسية' : 'Home'}`;
+  }, [locale, rtl, direction, isPreview]);
 
   const contactHref = (sector?: string) => whatsappUrl(site.offices[0].phone, locale, sector);
 
@@ -53,12 +57,12 @@ function App() {
 
   return (
     <div className={`site direction-${direction} ${rtl ? 'is-rtl' : 'is-ltr'}`}>
-      <div className="preview-switch" aria-label={rtl ? 'اختيار المعاينة' : 'Choose preview'}>
+      {isPreview && <div className="preview-switch" aria-label={rtl ? 'اختيار المعاينة' : 'Choose preview'}>
         <span>{rtl ? 'المعاينة' : 'PREVIEW'}</span>
         {(['a', 'b', 'c'] as Direction[]).map((item) => (
           <a key={item} href={`${BASE}preview/${item}`} aria-current={item === direction ? 'page' : undefined}>{item.toUpperCase()}</a>
         ))}
-      </div>
+      </div>}
       <header className="topbar">
         <a className="company-name" href="#top">{site.company[locale]}</a>
         <nav aria-label={rtl ? 'التنقل الرئيسي' : 'Main navigation'}>
@@ -174,7 +178,7 @@ function App() {
           <ContactSection locale={locale} rtl={rtl} selectedSector={selectedSector} />
         </main>
       )}
-      <footer className="footer"><span>{site.company[locale]}</span><a href={emailUrl(locale)}><Mail size={15} />{site.email}</a><span>{rtl ? 'معاينة تصميمية · A / B / C' : 'Design exploration · A / B / C'}</span></footer>
+      <footer className="footer"><span>{site.company[locale]}</span><a href={emailUrl(locale)}><Mail size={15} />{site.email}</a>{isPreview && <span>{rtl ? 'معاينة تصميمية · A / B / C' : 'Design exploration · A / B / C'}</span>}</footer>
     </div>
   );
 }
@@ -192,9 +196,4 @@ function ContactSection({ locale, rtl, selectedSector }: { locale: Locale; rtl: 
   </section>;
 }
 
-const baseRoot = BASE.endsWith('/') ? BASE : `${BASE}/`;
-if (window.location.pathname === baseRoot) {
-  window.location.replace(`${baseRoot}preview/a`);
-} else {
-  createRoot(document.getElementById('root')!).render(<App />);
-}
+createRoot(document.getElementById('root')!).render(<App />);

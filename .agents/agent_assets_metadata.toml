@@ -210,3 +210,17 @@ mtime_ms = 1793911289007
 storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:e843aec5-4713-402e-8285-cc49cce1aba9/07a6e2ee-bcde-408e-8fca-a909ef8bfa34/e4d3cd66-9af9-4503-9319-aa866dc285cc"
 storage_version_token = "1793911353646803"
 content_type = "image/jpeg"
+
+[[outputs]]
+id = "GZeUEETXjSCAJZqwmfDej"
+uri = "file://generated-artifacts/aldamni-preview/product-house-selected.jpg"
+type = "image"
+title = "Selected Product House Home — desktop and mobile"
+description = "Playwright CLI screenshots of the selected direction C at 1440px and 390px. The root Home now opens in English/LTR; Arabic remains available and the three design-reference routes remain accessible."
+logical_id = "ae7e01ba-84eb-4101-ad69-7aaeb1536582"
+content_hash = "sha256:576095b5c893e20236219451f5fcff872c94d2a07d3abaf0f899d3008639ee42"
+size = 166071
+mtime_ms = 1794055248994
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:e843aec5-4713-402e-8285-cc49cce1aba9/ae7e01ba-84eb-4101-ad69-7aaeb1536582/fe04dde1-3299-4113-9245-f36dc1039017"
+storage_version_token = "1794055309772727"
+content_type = "image/jpeg"

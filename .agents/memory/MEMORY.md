@@ -1,3 +1,4 @@
 - [Auto Service company profile](corporate-profile-facts.md) — keep the legal name, registration, history, regional hubs, and sector scope consistent across the site and profile.
+- [Approved visual direction](visual-direction.md) — the user selected Product House (direction C) for the corporate Home page.
 - [Domain and email DNS](domain-email-dns.md) — user connects the GoDaddy domain; never touch or suggest changes to company email DNS records.
 - [Playwright CLI sessions](playwright-cli-sessions.md) — open, test, and close the browser in one ShellExec call; later calls may not retain the session.

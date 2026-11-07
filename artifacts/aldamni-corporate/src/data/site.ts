@@ -57,7 +57,7 @@ export const site = {
     { key: 'kuwait', name: { en: 'Kuwait', ar: 'الكويت' }, address: { en: 'Al-Ahmadi – Al-Aqaila – Taiba Mall Building, 7th Floor [TO CONFIRM]', ar: 'الأحمدي - العقيلة - مبنى طيبة مول الدور السابع' }, phone: '+96555554199', href: 'https://wa.me/96555554199' },
     { key: 'syria', name: { en: 'Syria', ar: 'سوريا' }, address: { en: 'Rif Dimashq – Qura Al-Sham – Building 43', ar: 'ريف دمشق - قرى الشام - بناء 43' }, phone: '+963959811087', href: 'https://wa.me/963959811087' },
   ],
-  email: 'anas@appautoservice.com',
+  email: 'fahad.al-dousari@appautoservice.com',
 };
 
 export const directionCopy = {
