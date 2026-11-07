@@ -64,3 +64,7 @@ Thumbs.db
 # Replit
 .cache/
 .local/
+
+# Replit local tooling
+/.config/
+/attached_assets/
